@@ -208,7 +208,7 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblGenders = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblInsertarArtistas = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
@@ -294,13 +294,18 @@ public class OccamyMusic extends javax.swing.JFrame {
         pnlMain.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 156, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Playlists");
+        jLabel5.setText("Menú de acciones");
         pnlMain.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 320, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Rap mexa");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 358, -1, -1));
+        lblInsertarArtistas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInsertarArtistas.setText("Insertar artistas");
+        lblInsertarArtistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblInsertarArtistas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInsertarArtistasMouseClicked(evt);
+            }
+        });
+        pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 358, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("En ingles");
@@ -346,6 +351,10 @@ public class OccamyMusic extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCerrarMouseClicked
+
+    private void lblInsertarArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarArtistasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblInsertarArtistasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -451,7 +460,6 @@ public class OccamyMusic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -461,6 +469,7 @@ public class OccamyMusic extends javax.swing.JFrame {
     private javax.swing.JLabel lblFav;
     private javax.swing.JLabel lblGenders;
     private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblInsertarArtistas;
     private javax.swing.JLabel lblProfile;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlTopBar;
