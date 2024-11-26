@@ -1,0 +1,546 @@
+[
+    {
+        "nombre": "Big Time Rush",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Pop",
+        "integrantes": [
+            { "nombre": "Kendall", "apellido": "Schmidt", "rol": "Vocalista", "fechaIngreso": "2009-01-01", "estadoActivo": true },
+            { "nombre": "James", "apellido": "Maslow", "rol": "Vocalista", "fechaIngreso": "2009-01-01", "estadoActivo": true },
+            { "nombre": "Carlos", "apellido": "Pena Jr.", "rol": "Vocalista", "fechaIngreso": "2009-01-01", "estadoActivo": true },
+            { "nombre": "Logan", "apellido": "Henderson", "rol": "Vocalista", "fechaIngreso": "2009-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "One Direction",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Pop",
+        "integrantes": [
+            { "nombre": "Harry", "apellido": "Styles", "rol": "Vocalista", "fechaIngreso": "2010-01-01", "estadoActivo": false, "fechaSalida": "2015-01-01" },
+            { "nombre": "Niall", "apellido": "Horan", "rol": "Vocalista", "fechaIngreso": "2010-01-01", "estadoActivo": false, "fechaSalida": "2015-01-01" },
+            { "nombre": "Liam", "apellido": "Payne", "rol": "Vocalista", "fechaIngreso": "2010-01-01", "estadoActivo": false, "fechaSalida": "2015-01-01" },
+            { "nombre": "Louis", "apellido": "Tomlinson", "rol": "Vocalista", "fechaIngreso": "2010-01-01", "estadoActivo": false, "fechaSalida": "2015-01-01" },
+            { "nombre": "Zayn", "apellido": "Malik", "rol": "Vocalista", "fechaIngreso": "2010-01-01", "estadoActivo": false, "fechaSalida": "2015-03-25" }
+        ]
+    },
+    {
+        "nombre": "BTS",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            { "nombre": "Kim", "apellido": "Namjoon", "rol": "Rapero principal", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Kim", "apellido": "Seokjin", "rol": "Vocalista", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Min", "apellido": "Yoongi", "rol": "Rapero", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Jung", "apellido": "Hoseok", "rol": "Rapero y bailarín", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Park", "apellido": "Jimin", "rol": "Vocalista", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Kim", "apellido": "Taehyung", "rol": "Vocalista", "fechaIngreso": "2013-01-01", "estadoActivo": true },
+            { "nombre": "Jeon", "apellido": "Jungkook", "rol": "Vocalista principal", "fechaIngreso": "2013-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "BLACKPINK",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            { "nombre": "Kim", "apellido": "Jisoo", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Jennie", "apellido": "Kim", "rol": "Rapera y vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Roseanne", "apellido": "Park", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Lalisa", "apellido": "Manoban", "rol": "Rapera y bailarina", "fechaIngreso": "2016-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "Eminem",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap",
+        "integrantes": [
+            {
+                "nombre": "Marshall",
+                "apellido": "Mathers",
+                "rol": "Rapero",
+                "fechaIngreso": "1996-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Santa Fe Klan",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Ángel",
+                "apellido": "Quezada",
+                "rol": "Rapero",
+                "fechaIngreso": "2013-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "TXT",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            {
+                "nombre": "Choi",
+                "apellido": "Yeonjun",
+                "rol": "Vocalista y rapero",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Choi",
+                "apellido": "Soobin",
+                "rol": "Líder y vocalista",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Choi",
+                "apellido": "Beomgyu",
+                "rol": "Vocalista",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Kang",
+                "apellido": "Taehyun",
+                "rol": "Vocalista",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Huening",
+                "apellido": "Kai",
+                "rol": "Vocalista",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Jay Park",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "K-hiphop",
+        "integrantes": [
+            {
+                "nombre": "Park",
+                "apellido": "Jaebeom",
+                "rol": "Rapero y Vocalista",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Lil Nas X",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap",
+        "integrantes": [
+            {
+                "nombre": "Montero",
+                "apellido": "Hill",
+                "rol": "Rapero y Cantante",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Natanael Cano",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Regional Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Natanael",
+                "apellido": "Cano",
+                "rol": "Vocalista",
+                "fechaIngreso": "2019-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Adele",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Pop/Soul",
+        "integrantes": [
+            {
+                "nombre": "Adele",
+                "apellido": "Adkins",
+                "rol": "Cantante",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "J Balvin",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Reguetón",
+        "integrantes": [
+            {
+                "nombre": "José",
+                "apellido": "Osorio",
+                "rol": "Cantante",
+                "fechaIngreso": "2007-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Post Malone",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Hip-hop/Pop",
+        "integrantes": [
+            {
+                "nombre": "Austin",
+                "apellido": "Post",
+                "rol": "Rapero y Cantante",
+                "fechaIngreso": "2015-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Lefty SM",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Juan Carlos",
+                "apellido": "Sauceda",
+                "rol": "Rapero",
+                "fechaIngreso": "2016-01-01",
+                "estadoActivo": false,
+                "fechaSalida": "2023-09-03"
+            }
+        ]
+    },
+    {
+        "nombre": "C-Kan",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap Mexicano",
+        "integrantes": [
+            {
+                "nombre": "José Luis",
+                "apellido": "González",
+                "rol": "Rapero",
+                "fechaIngreso": "2006-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Yoss Bones",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Yoselinne",
+                "apellido": "Acuña",
+                "rol": "Rapera",
+                "fechaIngreso": "2018-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Gera MX",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Rap Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Gerardo",
+                "apellido": "Daniel",
+                "rol": "Rapero",
+                "fechaIngreso": "2013-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "The Beatles",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Rock Clásico",
+        "integrantes": [
+            {
+                "nombre": "John",
+                "apellido": "Lennon",
+                "rol": "Vocalista y Guitarrista",
+                "fechaIngreso": "1960-01-01",
+                "estadoActivo": false,
+                "fechaSalida": "1969-09-20"
+            },
+            {
+                "nombre": "Paul",
+                "apellido": "McCartney",
+                "rol": "Vocalista y Bajista",
+                "fechaIngreso": "1960-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "George",
+                "apellido": "Harrison",
+                "rol": "Guitarrista",
+                "fechaIngreso": "1960-01-01",
+                "estadoActivo": false,
+                "fechaSalida": "1970-04-10"
+            },
+            {
+                "nombre": "Ringo",
+                "apellido": "Starr",
+                "rol": "Baterista",
+                "fechaIngreso": "1962-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "The Revivalists",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Rock Alternativo",
+        "integrantes": [
+            {
+                "nombre": "David",
+                "apellido": "Shaw",
+                "rol": "Vocalista",
+                "fechaIngreso": "2007-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Zack",
+                "apellido": "Feinberg",
+                "rol": "Guitarrista",
+                "fechaIngreso": "2007-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Andrew",
+                "apellido": "Campanelli",
+                "rol": "Baterista",
+                "fechaIngreso": "2007-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Peso Pluma",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Regional Mexicano",
+        "integrantes": [
+            {
+                "nombre": "Hassan",
+                "apellido": "Emilio Kabande",
+                "rol": "Vocalista",
+                "fechaIngreso": "2020-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Sebastián Yatra",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Pop Latino",
+        "integrantes": [
+            {
+                "nombre": "Sebastián",
+                "apellido": "Yatra",
+                "rol": "Vocalista y Compositor",
+                "fechaIngreso": "2013-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Manuel Turizo",
+        "tipo": "solista",
+        "imagenPath": "",
+        "genero": "Reguetón",
+        "integrantes": [
+            {
+                "nombre": "Manuel",
+                "apellido": "Turizo",
+                "rol": "Vocalista y Compositor",
+                "fechaIngreso": "2015-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Linkin Park",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Rock Alternativo",
+        "integrantes": [
+            {
+                "nombre": "Mike",
+                "apellido": "Shinoda",
+                "rol": "Vocalista y Guitarrista",
+                "fechaIngreso": "1996-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Brad",
+                "apellido": "Delson",
+                "rol": "Guitarrista",
+                "fechaIngreso": "1996-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Chester",
+                "apellido": "Bennington",
+                "rol": "Vocalista",
+                "fechaIngreso": "2000-01-01",
+                "estadoActivo": false,
+                "fechaSalida": "2017-07-20"
+            },
+            {
+                "nombre": "Rob",
+                "apellido": "Bourdon",
+                "rol": "Baterista",
+                "fechaIngreso": "1996-01-01",
+                "estadoActivo": false,
+                "fechaSalida": "2017-07-20"
+            },
+            {
+                "nombre": "Dave",
+                "apellido": "Farrell",
+                "rol": "Bajista",
+                "fechaIngreso": "1996-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "Imagine Dragons",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Rock Alternativo",
+        "integrantes": [
+            {
+                "nombre": "Dan",
+                "apellido": "Reynolds",
+                "rol": "Vocalista",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Wayne",
+                "apellido": "Sermon",
+                "rol": "Guitarrista",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Ben",
+                "apellido": "McKee",
+                "rol": "Bajista",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            },
+            {
+                "nombre": "Daniel",
+                "apellido": "Platzman",
+                "rol": "Baterista",
+                "fechaIngreso": "2008-01-01",
+                "estadoActivo": true
+            }
+        ]
+    },
+    {
+        "nombre": "The Rolling Stones",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Rock Clásico",
+        "integrantes": [
+            { "nombre": "Mick", "apellido": "Jagger", "rol": "Vocalista", "fechaIngreso": "1962-01-01", "estadoActivo": true },
+            { "nombre": "Keith", "apellido": "Richards", "rol": "Guitarrista", "fechaIngreso": "1962-01-01", "estadoActivo": true },
+            { "nombre": "Charlie", "apellido": "Watts", "rol": "Baterista", "fechaIngreso": "1962-01-01", "estadoActivo": false, "fechaSalida": "2021-08-24" },
+            { "nombre": "Ronnie", "apellido": "Wood", "rol": "Guitarrista", "fechaIngreso": "1975-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "Maroon 5",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Pop Rock",
+        "integrantes": [
+            { "nombre": "Adam", "apellido": "Levine", "rol": "Vocalista y Guitarrista", "fechaIngreso": "2001-01-01", "estadoActivo": true },
+            { "nombre": "Jesse", "apellido": "Carmichael", "rol": "Tecladista y Guitarrista", "fechaIngreso": "2001-01-01", "estadoActivo": true },
+            { "nombre": "Mickey", "apellido": "Madden", "rol": "Bajista", "fechaIngreso": "2001-01-01", "estadoActivo": true },
+            { "nombre": "Matt", "apellido": "Flynn", "rol": "Baterista", "fechaIngreso": "2006-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "KARD",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            { "nombre": "J.seph", "apellido": "", "rol": "Rapero", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "BM", "apellido": "", "rol": "Rapero", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Somin", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Jiwoo", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "Momoland",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            { "nombre": "Hyebin", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Jane", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Nayun", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "JooE", "apellido": "", "rol": "Rapera", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Ahin", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true },
+            { "nombre": "Nancy", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2016-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "Red Velvet",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "K-pop",
+        "integrantes": [
+            { "nombre": "Irene", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2014-01-01", "estadoActivo": true },
+            { "nombre": "Seulgi", "apellido": "", "rol": "Vocalista y Bailarina", "fechaIngreso": "2014-01-01", "estadoActivo": true },
+            { "nombre": "Wendy", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2014-01-01", "estadoActivo": true },
+            { "nombre": "Joy", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2014-01-01", "estadoActivo": true },
+            { "nombre": "Yeri", "apellido": "", "rol": "Vocalista", "fechaIngreso": "2015-01-01", "estadoActivo": true }
+        ]
+    },
+    {
+        "nombre": "Morat",
+        "tipo": "banda",
+        "imagenPath": "",
+        "genero": "Pop Latino",
+        "integrantes": [
+            { "nombre": "Juan Pablo", "apellido": "Villamil", "rol": "Guitarrista y Vocalista", "fechaIngreso": "2011-01-01", "estadoActivo": true },
+            { "nombre": "Simón", "apellido": "Vargas", "rol": "Bajista y Coros", "fechaIngreso": "2011-01-01", "estadoActivo": true },
+            { "nombre": "Martín", "apellido": "Vargas", "rol": "Percusionista y Baterista", "fechaIngreso": "2011-01-01", "estadoActivo": true },
+            { "nombre": "Juan Pablo", "apellido": "Isaza", "rol": "Tecladista y Vocalista", "fechaIngreso": "2011-01-01", "estadoActivo": true }
+        ]
+    }
+]
