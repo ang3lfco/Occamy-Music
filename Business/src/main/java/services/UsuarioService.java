@@ -5,6 +5,8 @@
 package services;
 
 import daos.UsuarioDAO;
+import dtos.UsuarioDTO;
+import javax.swing.JOptionPane;
 import models.Usuario;
 
 /**
@@ -18,8 +20,33 @@ public class UsuarioService {
         this.usuarioDAO = new UsuarioDAO();
     }
     
-    public void agregarUsuario(String nombre, String apellido, String correo, String pass, String imagenPath){
-        Usuario usuario = new Usuario(nombre, apellido, correo, pass, imagenPath);
-        usuarioDAO.insertar(usuario);
+    public boolean agregarUsuario(UsuarioDTO usuarioDTO){
+        try{
+            if(usuarioDTO.getNombre().isEmpty() || usuarioDTO.getCorreo().isEmpty() || usuarioDTO.getPass().isEmpty()){
+                throw new IllegalArgumentException("Llene todos los campos.");
+            }
+            else if(!usuarioDTO.getNombre().matches("^[A-Za-z\\s]+$")){
+                throw new IllegalArgumentException("El nombre solo puede contener letras {A-Za-z} y espacios.");
+            }
+            else{
+                Usuario usuario = new Usuario(
+                usuarioDTO.getNombre(), 
+                usuarioDTO.getCorreo(), 
+                usuarioDTO.getPass(), 
+                usuarioDTO.getImagenPath());
+                
+                try{
+                    return usuarioDAO.insertar(usuario);
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error al insertar: " + e.getMessage(), "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+        }
+        catch(IllegalArgumentException e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     }
 }

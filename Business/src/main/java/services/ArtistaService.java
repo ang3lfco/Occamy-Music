@@ -5,6 +5,7 @@
 package services;
 
 import daos.ArtistaDAO;
+import dtos.ArtistaDTO;
 import dtos.IntegranteDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +36,24 @@ public class ArtistaService {
             integrantes.add(integrante);
         }
         return integrantes;
+    }
+    
+    public List<IntegranteDTO> entidadToDTO(List<Integrante> integrantes){
+        List<IntegranteDTO> integrantesDTO = new ArrayList<>();
+        for(Integrante integrante : integrantes){
+            IntegranteDTO dto = new IntegranteDTO(integrante.getNombre(), integrante.getApellido(), integrante.getRol(), integrante.getFechaIngreso(), integrante.isEstadoActivo(), integrante.getFechaSalida());
+            integrantesDTO.add(dto);
+        }
+        return integrantesDTO;
+    }
+    
+    public List<ArtistaDTO> obtenerArtistas(){
+        List<Artista> artistas = artistaDAO.getArtistas();
+        List<ArtistaDTO> artistasDTO = new ArrayList<>();
+        for(Artista artista : artistas){
+            ArtistaDTO artistaDTO = new ArtistaDTO(artista.getId(), artista.getNombre(), artista.getTipo(), artista.getImagenPath(), artista.getGenero(), entidadToDTO(artista.getIntegrantes()));
+            artistasDTO.add(artistaDTO);
+        }
+        return artistasDTO;
     }
 }

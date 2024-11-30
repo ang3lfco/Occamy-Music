@@ -5,13 +5,14 @@
 package dtos;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author martinez
  */
 public class ArtistaDTO {
-    private String id;
+    private ObjectId id;
     private String nombre;
     private String tipo;
     private String imagenPath;
@@ -29,7 +30,7 @@ public class ArtistaDTO {
         this.integrantes = integrantes;
     }
 
-    public ArtistaDTO(String id, String nombre, String tipo, String imagenPath, String genero, List<IntegranteDTO> integrantes) {
+    public ArtistaDTO(ObjectId id, String nombre, String tipo, String imagenPath, String genero, List<IntegranteDTO> integrantes) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -38,11 +39,11 @@ public class ArtistaDTO {
         this.integrantes = integrantes;
     }
     
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
