@@ -5,15 +5,15 @@
 package models;
 
 import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author martinez
  */
 public class Usuario {
-    private String id;
+    private ObjectId id;
     private String nombre;
-    private String apellido;
     private String correo;
     private String pass;
     private String imagenPath;
@@ -21,28 +21,26 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String correo, String pass, String imagenPath) {
+    public Usuario(String nombre, String correo, String pass, String imagenPath) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.correo = correo;
         this.pass = pass;
         this.imagenPath = imagenPath;
     }
 
-    public Usuario(String id, String nombre, String apellido, String correo, String pass, String imagenPath) {
+    public Usuario(ObjectId id, String nombre, String correo, String pass, String imagenPath) {
         this.id = id;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.correo = correo;
         this.pass = pass;
         this.imagenPath = imagenPath;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -52,14 +50,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -110,6 +100,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", pass=" + pass + ", imagenPath=" + imagenPath + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", pass=" + pass + ", imagenPath=" + imagenPath + '}';
     }
 }

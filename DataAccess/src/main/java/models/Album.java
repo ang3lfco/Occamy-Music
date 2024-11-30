@@ -7,13 +7,14 @@ package models;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author martinez
  */
 public class Album {
-    private String id;
+    private ObjectId id;
     private String nombre;
     private Date fechaLanzamiento;
     private String genero;
@@ -31,7 +32,7 @@ public class Album {
         this.canciones = canciones;
     }
 
-    public Album(String id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
+    public Album(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -40,11 +41,11 @@ public class Album {
         this.canciones = canciones;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

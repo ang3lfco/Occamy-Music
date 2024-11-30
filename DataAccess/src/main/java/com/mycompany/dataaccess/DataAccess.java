@@ -23,7 +23,7 @@ public class DataAccess {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         // Ruta al archivo JSON
-        String rutaArchivo = "test.json";
+        String rutaArchivo = "artistas.json";
 
         try {
             // Leer el archivo JSON y convertirlo en una lista de documentos

@@ -6,13 +6,14 @@ package models;
 
 import java.util.List;
 import java.util.Objects;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author martinez
  */
 public class Artista {
-    private String id;
+    private ObjectId id;
     private String nombre;
     private String tipo;
     private String imagenPath;
@@ -30,7 +31,7 @@ public class Artista {
         this.integrantes = integrantes;
     }
 
-    public Artista(String id, String nombre, String tipo, String imagenPath, String genero, List<Integrante> integrantes) {
+    public Artista(ObjectId id, String nombre, String tipo, String imagenPath, String genero, List<Integrante> integrantes) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -39,11 +40,11 @@ public class Artista {
         this.integrantes = integrantes;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

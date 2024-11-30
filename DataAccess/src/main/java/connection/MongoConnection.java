@@ -11,7 +11,7 @@ package connection;
 public class MongoConnection {
     private static final String dbhost = "localhost";
     private static final int dbport = 27017;
-    private static final String dbname = "occamymusic";
+    private static final String dbname = "bibliotecaMusical7";
     
     private static final String usuariosCollection = "usuarios";
     private static final String artistasCollection = "artistas";

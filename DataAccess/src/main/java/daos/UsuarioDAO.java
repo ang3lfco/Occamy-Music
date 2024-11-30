@@ -24,15 +24,14 @@ public class UsuarioDAO {
         this.mongoClient = MongoClients.create(MongoConnection.getConnection());
     }
     
-    public void insertar(Usuario usuario){
-        Document usuarioDoc = new Document("_id", usuario.getId())
-                .append("nombre", usuario.getNombre())
-                .append("apellido", usuario.getApellido())
+    public boolean insertar(Usuario usuario){
+        Document usuarioDoc = new Document("nombre", usuario.getNombre())
                 .append("correo", usuario.getCorreo())
                 .append("contraseña", usuario.getPass())
                 .append("imagenPath", usuario.getImagenPath());
         
-        MongoCollection<Document> collection = mongoClient.getDatabase(MongoConnection.getDatabase()).getCollection(MongoConnection.getArtistasCollection());
+        MongoCollection<Document> collection = mongoClient.getDatabase(MongoConnection.getDatabase()).getCollection(MongoConnection.getUsuariosCollection());
         collection.insertOne(usuarioDoc);
+        return true;
     }
 }

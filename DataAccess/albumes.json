@@ -1,0 +1,674 @@
+[
+    {
+        "nombre": "BTR",
+        "fechaLanzamiento": "2010-10-11",
+        "genero": "Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Boyfriend" },
+            { "titulo": "Til I Forget About You" },
+            { "titulo": "Worldwide" }
+        ],
+        "artista": "Big Time Rush"
+    },
+    {
+        "nombre": "Elevate",
+        "fechaLanzamiento": "2011-11-21",
+        "genero": "Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Music Sounds Better with U" },
+            { "titulo": "Windows Down" },
+            { "titulo": "Cover Girl" }
+        ],
+        "artista": "Big Time Rush"
+    },
+    {
+        "nombre": "Up All Night",
+        "fechaLanzamiento": "2011-11-18",
+        "genero": "Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "What Makes You Beautiful" },
+            { "titulo": "One Thing" },
+            { "titulo": "More Than This" }
+        ],
+        "artista": "One Direction"
+    },
+    {
+        "nombre": "Take Me Home",
+        "fechaLanzamiento": "2012-11-09",
+        "genero": "Pop",
+        "portadaPath": "url_imagen_take_me_home_album",
+        "canciones": [
+            { "titulo": "Live While We're Young" },
+            { "titulo": "Kiss You" },
+            { "titulo": "Little Things" }
+        ],
+        "artista": "One Direction"
+    },
+    {
+        "nombre": "2 Cool 4 Skool",
+        "fechaLanzamiento": "2013-06-12",
+        "genero": "Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "No More Dream" },
+            { "titulo": "We Are Bulletproof Pt.2" },
+            { "titulo": "I Like It" }
+        ],
+        "artista": "BTS"
+    },
+    {
+        "nombre": "Dark & Wild",
+        "fechaLanzamiento": "2014-08-19",
+        "genero": "Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Danger" },
+            { "titulo": "War of Hormone" },
+            { "titulo": "Let Me Know" }
+        ],
+        "artista": "BTS"
+    },
+    {
+        "nombre": "The Album",
+        "fechaLanzamiento": "2020-10-02",
+        "genero": "Pop, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "How You Like That" },
+            { "titulo": "Ice Cream" },
+            { "titulo": "Pretty Savage" }
+        ],
+        "artista": "BLACKPINK"
+    },
+    {
+        "nombre": "Square Up",
+        "fechaLanzamiento": "2018-06-15",
+        "genero": "Pop, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Ddu-Du Ddu-Du" },
+            { "titulo": "Forever Young" },
+            { "titulo": "Really" }
+        ],
+        "artista": "BLACKPINK"
+    },
+    {
+        "nombre": "The Marshall Mathers LP",
+        "fechaLanzamiento": "2000-05-23",
+        "genero": "Hip-Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Stan" },
+            { "titulo": "The Way I Am" },
+            { "titulo": "Real Slim Shady" }
+        ],
+        "artista": "Eminem"
+    },
+    {
+        "nombre": "The Eminem Show",
+        "fechaLanzamiento": "2002-05-26",
+        "genero": "Hip-Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Without Me" },
+            { "titulo": "Cleaning Out My Closet" },
+            { "titulo": "Sing for the Moment" }
+        ],
+        "artista": "Eminem"
+    },
+    {
+        "nombre": "Santa Cumbia",
+        "fechaLanzamiento": "2020-07-24",
+        "genero": "Hip-Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Los Dueños del Barrio" },
+            { "titulo": "La Vida es un Sueño" },
+            { "titulo": "Raza" }
+        ],
+        "artista": "Santa Fe Klan"
+    },
+    {
+        "nombre": "Mundo",
+        "fechaLanzamiento": "2021-09-24",
+        "genero": "Hip-Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "No Me Conoces" },
+            { "titulo": "Soy el Barrio" },
+            { "titulo": "Un Dia de Estos" }
+        ],
+        "artista": "Santa Fe Klan"
+    },
+    {
+        "nombre": "The Dream Chapter: Star",
+        "fechaLanzamiento": "2019-03-04",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Blue Orangeade" },
+            { "titulo": "Crown" },
+            { "titulo": "Nap of a Star" }
+        ],
+        "artista": "TXT"
+    },
+    {
+        "nombre": "The Dream Chapter: Magic",
+        "fechaLanzamiento": "2019-10-21",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "9 and Three Quarters" },
+            { "titulo": "Run Away" },
+            { "titulo": "Angel or Devil" }
+        ],
+        "artista": "TXT"
+    },
+    {
+        "nombre": "Worldwide",
+        "fechaLanzamiento": "2011-11-23",
+        "genero": "Hip-Hop/Rap",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Abandoned" },
+            { "titulo": "Star" },
+            { "titulo": "Know Your Name" }
+        ],
+        "artista": "Jay Park"
+    },
+    {
+        "nombre": "Evolution",
+        "fechaLanzamiento": "2016-10-14",
+        "genero": "Hip-Hop/Rap",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Soju" },
+            { "titulo": "All I Wanna Do" },
+            { "titulo": "Mommae" }
+        ],
+        "artista": "Jay Park"
+    },
+    {
+        "nombre": "Montero",
+        "fechaLanzamiento": "2021-09-17",
+        "genero": "Hip-Hop, Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Montero (Call Me By Your Name)" },
+            { "titulo": "Industry Baby" },
+            { "titulo": "Sun Goes Down" }
+        ],
+        "artista": "Lil Nas X"
+    },
+    {
+        "nombre": "7",
+        "fechaLanzamiento": "2019-06-21",
+        "genero": "Hip-Hop, Country Rap",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Old Town Road" },
+            { "titulo": "Panini" },
+            { "titulo": "Rodeo" }
+        ],
+        "artista": "Lil Nas X"
+    },
+    {
+        "nombre": "Todo Es Diferente",
+        "fechaLanzamiento": "2020-09-18T00:00:00Z",
+        "genero": "Corridos Tumbados, Regional Mexicano",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Soy El Diablo" },
+            { "titulo": "Arriba de la Blindada" },
+            { "titulo": "El Drip" }
+        ],
+        "artista": "Natanael Cano"
+    },
+    {
+        "nombre": "Las 3 Torres",
+        "fechaLanzamiento": "2021-08-06T00:00:00Z",
+        "genero": "Corridos Tumbados, Regional Mexicano",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "El Malo" },
+            { "titulo": "Corrido de Juanito" },
+            { "titulo": "Corridos de la Sierra" }
+        ],
+        "artista": "Natanael Cano"
+    },
+    {
+        "nombre": "21",
+        "fechaLanzamiento": "2011-01-24T00:00:00Z",
+        "genero": "Pop, Soul",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Rolling in the Deep" },
+            { "titulo": "Someone Like You" },
+            { "titulo": "Set Fire to the Rain" }
+        ],
+        "artista": "Adele"
+    },
+    {
+        "nombre": "25",
+        "fechaLanzamiento": "2015-11-20T00:00:00Z",
+        "genero": "Pop, Soul",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Hello" },
+            { "titulo": "When We Were Young" },
+            { "titulo": "Send My Love (To Your New Lover)" }
+        ],
+        "artista": "Adele"
+    },
+    {
+        "nombre": "Colores",
+        "fechaLanzamiento": "2020-03-19T00:00:00Z",
+        "genero": "Reggaeton, Latin Urban",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Blanco" },
+            { "titulo": "Rojo" },
+            { "titulo": "Morado" }
+        ],
+        "artista": "J Balvin"
+    },
+    {
+        "nombre": "Vibras",
+        "fechaLanzamiento": "2018-05-25T00:00:00Z",
+        "genero": "Reggaeton, Latin Urban",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Machika" },
+            { "titulo": "Ahora" },
+            { "titulo": "Mi Gente" }
+        ],
+        "artista": "J Balvin"
+    },
+    {
+        "nombre": "Stoney",
+        "fechaLanzamiento": "2016-12-09T00:00:00Z",
+        "genero": "Hip Hop, R&B",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "White Iverson" },
+            { "titulo": "Deja Vu" },
+            { "titulo": "Congratulations" }
+        ],
+        "artista": "Post Malone"
+    },
+    {
+        "nombre": "Beerbongs & Bentleys",
+        "fechaLanzamiento": "2018-04-27T00:00:00Z",
+        "genero": "Hip Hop, Trap",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Rockstar" },
+            { "titulo": "Psycho" },
+            { "titulo": "Better Now" }
+        ],
+        "artista": "Post Malone"
+    },
+    {
+        "nombre": "La Voz del Barrio",
+        "fechaLanzamiento": "2019-08-30T00:00:00Z",
+        "genero": "Regional Mexicano, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Mi Vida Loca" },
+            { "titulo": "Es Mi Momento" },
+            { "titulo": "Mente Loca" }
+        ],
+        "artista": "Lefty SM"
+    },
+    {
+        "nombre": "El Duro",
+        "fechaLanzamiento": "2021-10-29T00:00:00Z",
+        "genero": "Regional Mexicano, Rap",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Al Rato" },
+            { "titulo": "El Duro" },
+            { "titulo": "Dejame Ser" }
+        ],
+        "artista": "Lefty SM"
+    },
+    {
+        "nombre": "Los Principios",
+        "fechaLanzamiento": "2015-07-10T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Mi Vida" },
+            { "titulo": "Haciendo Dinero" },
+            { "titulo": "Rappers Unidos" }
+        ],
+        "artista": "C-Kan"
+    },
+    {
+        "nombre": "Desde El Vario",
+        "fechaLanzamiento": "2017-09-22T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Vato Loco" },
+            { "titulo": "Callejón de los Milagros" },
+            { "titulo": "Chido Guero" }
+        ],
+        "artista": "C-Kan"
+    },
+    {
+        "nombre": "El Despertar",
+        "fechaLanzamiento": "2018-05-15T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Solo Yo" },
+            { "titulo": "Vuela Alto" },
+            { "titulo": "En Mis Sueños" }
+        ],
+        "artista": "Yoss Bones"
+    },
+    {
+        "nombre": "En Las Calles",
+        "fechaLanzamiento": "2020-09-05T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Mi Barrio" },
+            { "titulo": "Sombra y Luz" },
+            { "titulo": "El Camino" }
+        ],
+        "artista": "Yoss Bones"
+    },
+    {
+        "nombre": "Gera MX",
+        "fechaLanzamiento": "2017-06-20T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Los Hijos del Barrio" },
+            { "titulo": "Mi Estilo" },
+            { "titulo": "Cuentos de la Calle" }
+        ],
+        "artista": "Gera MX"
+    },
+    {
+        "nombre": "Próximo Objetivo",
+        "fechaLanzamiento": "2019-11-15T00:00:00Z",
+        "genero": "Rap, Hip Hop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Enemigos" },
+            { "titulo": "De Aquí Para Allá" },
+            { "titulo": "Realidades" }
+        ],
+        "artista": "Gera MX"
+    },
+    {
+        "nombre": "Abbey Road",
+        "fechaLanzamiento": "1969-09-26T00:00:00Z",
+        "genero": "Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Come Together" },
+            { "titulo": "Something" },
+            { "titulo": "Here Comes the Sun" }
+        ],
+        "artista": "The Beatles"
+    },
+    {
+        "nombre": "Sgt. Pepper's Lonely Hearts Club Band",
+        "fechaLanzamiento": "1967-05-26T00:00:00Z",
+        "genero": "Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Lucy in the Sky with Diamonds" },
+            { "titulo": "With a Little Help from My Friends" },
+            { "titulo": "A Day in the Life" }
+        ],
+        "artista": "The Beatles"
+    },
+    {
+        "nombre": "Take Good Care",
+        "fechaLanzamiento": "2018-11-09T00:00:00Z",
+        "genero": "Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "All My Friends" },
+            { "titulo": "Change" },
+            { "titulo": "You and I" }
+        ],
+        "artista": "Zac Brown Band"
+    },
+    {
+        "nombre": "The Essential",
+        "fechaLanzamiento": "2004-03-09T00:00:00Z",
+        "genero": "Country",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Chicken Fried" },
+            { "titulo": "Colder Weather" },
+            { "titulo": "Toes" }
+        ],
+        "artista": "Zac Brown Band"
+    },
+    {
+        "nombre": "Único",
+        "fechaLanzamiento": "2018-12-14T00:00:00Z",
+        "genero": "Reggaeton",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Vaina Loca" },
+            { "titulo": "Sigo Extrañándote" },
+            { "titulo": "Baila Conmigo" }
+        ],
+        "artista": "Manuel Turizo"
+    },
+    {
+        "nombre": "ADN",
+        "fechaLanzamiento": "2020-04-10T00:00:00Z",
+        "genero": "Reggaeton",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "La Cama" },
+            { "titulo": "Loco" },
+            { "titulo": "Besame" }
+        ],
+        "artista": "Manuel Turizo"
+    },
+    {
+        "nombre": "Hybrid Theory",
+        "fechaLanzamiento": "2000-10-24T00:00:00Z",
+        "genero": "Nu Metal",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "In the End" },
+            { "titulo": "Crawling" },
+            { "titulo": "Papercut" }
+        ],
+        "artista": "Linkin Park"
+    },
+    {
+        "nombre": "Meteora",
+        "fechaLanzamiento": "2003-03-25T00:00:00Z",
+        "genero": "Nu Metal",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Numb" },
+            { "titulo": "Faint" },
+            { "titulo": "Somewhere I Belong" }
+        ],
+        "artista": "Linkin Park"
+    },
+    {
+        "nombre": "Night Visions",
+        "fechaLanzamiento": "2012-09-04T00:00:00Z",
+        "genero": "Pop Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "It's Time" },
+            { "titulo": "Radioactive" },
+            { "titulo": "Demons" }
+        ],
+        "artista": "Imagine Dragons"
+    },
+    {
+        "nombre": "Smoke + Mirrors",
+        "fechaLanzamiento": "2015-02-17T00:00:00Z",
+        "genero": "Pop Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "I Bet My Life" },
+            { "titulo": "Shots" },
+            { "titulo": "Gold" }
+        ],
+        "artista": "Imagine Dragons"
+    },
+    {
+        "nombre": "Let It Bleed",
+        "fechaLanzamiento": "1969-11-28T00:00:00Z",
+        "genero": "Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Gimme Shelter" },
+            { "titulo": "Love In Vain" },
+            { "titulo": "You Can't Always Get What You Want" }
+        ],
+        "artista": "The Rolling Stones"
+    },
+    {
+        "nombre": "Sticky Fingers",
+        "fechaLanzamiento": "1971-04-23T00:00:00Z",
+        "genero": "Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Brown Sugar" },
+            { "titulo": "Wild Horses" },
+            { "titulo": "Can't You Hear Me Knocking" }
+        ],
+        "artista": "The Rolling Stones"
+    },
+    {
+        "nombre": "Songs About Jane",
+        "fechaLanzamiento": "2002-06-25T00:00:00Z",
+        "genero": "Pop Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "This Love" },
+            { "titulo": "She Will Be Loved" },
+            { "titulo": "Tangled" }
+        ],
+        "artista": "Maroon 5"
+    },
+    {
+        "nombre": "V",
+        "fechaLanzamiento": "2014-09-02T00:00:00Z",
+        "genero": "Pop Rock",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Maps" },
+            { "titulo": "Animals" },
+            { "titulo": "Sugar" }
+        ],
+        "artista": "Maroon 5"
+    },
+    {
+        "nombre": "HOLA HOLA",
+        "fechaLanzamiento": "2017-07-19T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Hola Hola" },
+            { "titulo": "Don't Recall" },
+            { "titulo": "Living Good" }
+        ],
+        "artista": "KARD"
+    },
+    {
+        "nombre": "You & Me",
+        "fechaLanzamiento": "2019-02-12T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "You & Me" },
+            { "titulo": "Trust Me" },
+            { "titulo": "Dumb Litty" }
+        ],
+        "artista": "KARD"
+    },
+    {
+        "nombre": "Freeze!",
+        "fechaLanzamiento": "2020-03-03T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "I'm So Hot" },
+            { "titulo": "Thumbs Up" },
+            { "titulo": "Bad Boy" }
+        ],
+        "artista": "Momoland"
+    },
+    {
+        "nombre": "Good Mood",
+        "fechaLanzamiento": "2018-06-26T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Bboom Bboom" },
+            { "titulo": "Baam" },
+            { "titulo": "Wonderful Love" }
+        ],
+        "artista": "Momoland"
+    },
+    {
+        "nombre": "The Red",
+        "fechaLanzamiento": "2015-09-09T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Dumb Dumb" },
+            { "titulo": "Happiness" },
+            { "titulo": "Automatic" }
+        ],
+        "artista": "Red Velvet"
+    },
+    {
+        "nombre": "The Perfect Red Velvet",
+        "fechaLanzamiento": "2018-12-17T00:00:00Z",
+        "genero": "K-Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Bad Boy" },
+            { "titulo": "RBB (Really Bad Boy)" },
+            { "titulo": "Sassy Me" }
+        ],
+        "artista": "Red Velvet"
+    },
+    {
+        "nombre": "Sobre El Amor Y Sucesos",
+        "fechaLanzamiento": "2015-11-13T00:00:00Z",
+        "genero": "Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "Cómo Te Atreves" },
+            { "titulo": "Yo Contigo, Tú Conmigo" },
+            { "titulo": "Besos En Guerra" }
+        ],
+        "artista": "Morat"
+    },
+    {
+        "nombre": "Balas Perdidas",
+        "fechaLanzamiento": "2020-10-02T00:00:00Z",
+        "genero": "Pop",
+        "portadaPath": "",
+        "canciones": [
+            { "titulo": "No Termino" },
+            { "titulo": "La Correcta" },
+            { "titulo": "Yo Me Llamo Juan" }
+        ],
+        "artista": "Morat"
+    }
+]
