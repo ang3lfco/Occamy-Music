@@ -7,6 +7,7 @@ package services;
 import daos.ArtistaDAO;
 import dtos.ArtistaDTO;
 import dtos.IntegranteDTO;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import models.Artista;
@@ -27,6 +28,10 @@ public class ArtistaService {
         List<Integrante> integrantes = dtoToEntidad(integrantesDTO);
         Artista artista = new Artista(nombre, tipo, imagenPath, genero, integrantes);
         artistaDAO.insertar(artista);
+    }
+    
+    public void autoInsertarDatos() throws ParseException{
+        artistaDAO.insercionMasiva();
     }
     
     public List<Integrante> dtoToEntidad(List<IntegranteDTO> integranteDTO){
