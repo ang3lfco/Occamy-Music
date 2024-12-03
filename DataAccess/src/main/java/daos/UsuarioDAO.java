@@ -50,7 +50,7 @@ public class UsuarioDAO {
             return true;
         }
         catch(MongoException e){
-            System.out.println("Error en la operacion de Mongo: " + e.getMessage());
+            System.out.println("Error en Mongo al intentar insertar Usuario: " + e.getMessage());
             return false;
         }
     }
