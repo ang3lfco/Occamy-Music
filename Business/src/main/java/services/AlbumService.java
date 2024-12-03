@@ -5,6 +5,7 @@
 package services;
 
 import daos.AlbumDAO;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import models.Album;
@@ -20,8 +21,12 @@ public class AlbumService {
         this.albumDAO = new AlbumDAO();
     }
     
-    public void agregarAlbum(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones){
-        Album album = new Album(nombre, fechaLanzamiento, genero, portadaPath, canciones);
+    public void agregarAlbum(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista){
+        Album album = new Album(nombre, fechaLanzamiento, genero, portadaPath, canciones, artista);
         albumDAO.insertar(album);
+    }
+    
+    public void autoInsertarDatos() throws ParseException{
+        albumDAO.insercionMasiva();
     }
 }

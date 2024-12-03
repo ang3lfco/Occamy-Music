@@ -19,25 +19,28 @@ public class AlbumDTO {
     private String genero;
     private String portadaPath;
     private List<String> canciones;
+    private String artista;
 
     public AlbumDTO() {
     }
 
-    public AlbumDTO(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
+    public AlbumDTO(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.genero = genero;
         this.portadaPath = portadaPath;
         this.canciones = canciones;
+        this.artista = artista;
     }
 
-    public AlbumDTO(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
+    public AlbumDTO(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.genero = genero;
         this.portadaPath = portadaPath;
         this.canciones = canciones;
+        this.artista = artista;
     }
 
     public ObjectId getId() {
@@ -86,5 +89,13 @@ public class AlbumDTO {
 
     public void setCanciones(List<String> canciones) {
         this.canciones = canciones;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
     }
 }
