@@ -4,6 +4,7 @@
  */
 package ui;
 
+import ui.ext.RoundedPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,16 +14,28 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import services.precarga.Precargador;
 /**
  *
  * @author martinez
  */
 public class OccamyMusic extends javax.swing.JFrame {
     private int xMouse, yMouse;
-    private boolean logged  = false;
+    private boolean logged  = true;
+    
+    pnlLogin loginPanel = new pnlLogin();
+    pnlHome homePanel = new pnlHome();
+    pnlPerfil profilePanel = new pnlPerfil();
+    pnlArtistas artistasPanel = new pnlArtistas();
+    pnlAlbumes albumesPanel = new pnlAlbumes();
+    pnlGeneros generosPanel = new pnlGeneros();
+    pnlFavoritos favPanel = new pnlFavoritos();
     /**
      * Creates new form Example
      */
@@ -34,7 +47,7 @@ public class OccamyMusic extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        RoundedPanel mainPanel = new RoundedPanel(50, new Color(255, 255, 255));
+        RoundedPanel mainPanel = new RoundedPanel(50, new Color(246,246,246));
         mainPanel.setOpaque(false);
         setContentPane(mainPanel);
 
@@ -76,21 +89,12 @@ public class OccamyMusic extends javax.swing.JFrame {
             }
         });
         
-        
-        pnlLogin loginPanel = new pnlLogin();
-        pnlHome homePanel = new pnlHome();
-        pnlPerfil profilePanel = new pnlPerfil();
-        pnlArtistas artistsPanel = new pnlArtistas();
-        pnlAlbumes albumesPanel = new pnlAlbumes();
-        pnlGeneros generosPanel = new pnlGeneros();
-        pnlFavoritos favPanel = new pnlFavoritos();
-        
         contentPanel.add(loginPanel, "Login");
         contentPanel.add(homePanel, "Home");
-        contentPanel.add(profilePanel, "Profile");
-        contentPanel.add(artistsPanel, "Artists");
-        contentPanel.add(albumesPanel, "Albums");
-        contentPanel.add(generosPanel, "Genders");
+        contentPanel.add(profilePanel, "Perfil");
+        contentPanel.add(artistasPanel, "Artistas");
+        contentPanel.add(albumesPanel, "Albumes");
+        contentPanel.add(generosPanel, "Generos");
         contentPanel.add(favPanel, "Favoritos");
         
         
@@ -105,28 +109,28 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblProfile.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switchPanel("Profile");
+                switchPanel("Perfil");
             }
         });
 
-        lblArtists.addMouseListener(new MouseAdapter() {
+        lblArtistas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switchPanel("Artists");
+                switchPanel("Artistas");
             }
         });
         
         lblAlbums.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switchPanel("Albums");
+                switchPanel("Albumes");
             }
         });
         
-        lblGenders.addMouseListener(new MouseAdapter() {
+        lblCanciones.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switchPanel("Genders");
+                switchPanel("Generos");
             }
         });
         
@@ -156,34 +160,6 @@ public class OccamyMusic extends javax.swing.JFrame {
     public void setLogged(boolean logged) {
         this.logged = logged;
     }
-
-    /**
-     * Panel personalizado con bordes redondeados.
-     */
-    private static class RoundedPanel extends JPanel {
-        private final int cornerRadius;
-        private final Color backgroundColor;
-
-        public RoundedPanel(int cornerRadius, Color backgroundColor) {
-            this.cornerRadius = cornerRadius;
-            this.backgroundColor = backgroundColor;
-            setOpaque(false);
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            // Dibujar el fondo con bordes redondeados
-            g2.setColor(backgroundColor);
-            g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
-
-            g2.dispose();
-        }
-    }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,21 +172,21 @@ public class OccamyMusic extends javax.swing.JFrame {
 
         pnlMain = new javax.swing.JPanel();
         pnlTopBar = new javax.swing.JPanel();
-        btnCerrar = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblMinimizar = new javax.swing.JLabel();
+        lblMaximizar = new javax.swing.JLabel();
         lblProfile = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        lblArtists = new javax.swing.JLabel();
+        pnlBuscarContenedor = new javax.swing.JPanel();
+        txfBuscador = new javax.swing.JTextField();
+        lblBuscarIcon = new javax.swing.JLabel();
+        lblArtistas = new javax.swing.JLabel();
         lblAlbums = new javax.swing.JLabel();
-        lblGenders = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblCanciones = new javax.swing.JLabel();
+        lblMenuOpciones = new javax.swing.JLabel();
+        lblMenuAcciones = new javax.swing.JLabel();
         lblInsertarArtistas = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblRegistrarme = new javax.swing.JLabel();
+        lblAccion3 = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
         lblFav = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
@@ -222,19 +198,29 @@ public class OccamyMusic extends javax.swing.JFrame {
 
         pnlTopBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cerrar.png"))); // NOI18N
-        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cerrar.png"))); // NOI18N
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCerrarMouseClicked(evt);
+                lblCerrarMouseClicked(evt);
             }
         });
-        pnlTopBar.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        pnlTopBar.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minimizar.png"))); // NOI18N
-        pnlTopBar.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 6, -1, -1));
+        lblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/minimizar.png"))); // NOI18N
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizarMouseClicked(evt);
+            }
+        });
+        pnlTopBar.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 6, -1, -1));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/expandir.png"))); // NOI18N
-        pnlTopBar.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, -1, -1));
+        lblMaximizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/expandir.png"))); // NOI18N
+        lblMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMaximizarMouseClicked(evt);
+            }
+        });
+        pnlTopBar.add(lblMaximizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, -1, -1));
 
         lblProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/perfil.png"))); // NOI18N
@@ -242,60 +228,65 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlTopBar.add(lblProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 80, 40));
 
-        jPanel1.setBackground(new java.awt.Color(244, 245, 242));
+        pnlBuscarContenedor.setBackground(new java.awt.Color(244, 245, 242));
 
-        jTextField1.setBackground(new java.awt.Color(244, 245, 242));
-        jTextField1.setText("Buscar...");
-        jTextField1.setBorder(null);
+        txfBuscador.setBackground(new java.awt.Color(244, 245, 242));
+        txfBuscador.setText("Buscar...");
+        txfBuscador.setBorder(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        lblBuscarIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBuscarContenedorLayout = new javax.swing.GroupLayout(pnlBuscarContenedor);
+        pnlBuscarContenedor.setLayout(pnlBuscarContenedorLayout);
+        pnlBuscarContenedorLayout.setHorizontalGroup(
+            pnlBuscarContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBuscarContenedorLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
+                .addComponent(lblBuscarIcon)
                 .addGap(14, 14, 14)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txfBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pnlBuscarContenedorLayout.setVerticalGroup(
+            pnlBuscarContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuscarContenedorLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlBuscarContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBuscarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        pnlTopBar.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 300, -1));
+        pnlTopBar.add(pnlBuscarContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 300, -1));
 
         pnlMain.add(pnlTopBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 40));
 
-        lblArtists.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblArtists.setText("Artistas");
-        lblArtists.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblArtists, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 194, -1, -1));
+        lblArtistas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblArtistas.setText("Artistas");
+        lblArtistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblArtistas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblArtistasMouseClicked(evt);
+            }
+        });
+        pnlMain.add(lblArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 194, -1, -1));
 
         lblAlbums.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAlbums.setText("Álbumes");
         lblAlbums.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlMain.add(lblAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 226, -1, -1));
 
-        lblGenders.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblGenders.setText("Géneros");
-        lblGenders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblGenders, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 258, -1, -1));
+        lblCanciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCanciones.setText("Canciones");
+        lblCanciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlMain.add(lblCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 258, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Menú de opciones");
-        pnlMain.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 156, -1, -1));
+        lblMenuOpciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMenuOpciones.setText("Menú de opciones");
+        pnlMain.add(lblMenuOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 156, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Menú de acciones");
-        pnlMain.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 320, -1, -1));
+        lblMenuAcciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMenuAcciones.setText("Menú de acciones");
+        pnlMain.add(lblMenuAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 320, -1, -1));
 
         lblInsertarArtistas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInsertarArtistas.setText("Insertar artistas");
@@ -307,15 +298,20 @@ public class OccamyMusic extends javax.swing.JFrame {
         });
         pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 358, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("En ingles");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 386, -1, -1));
+        lblRegistrarme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblRegistrarme.setText("Registrarme");
+        lblRegistrarme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRegistrarme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRegistrarmeMouseClicked(evt);
+            }
+        });
+        pnlMain.add(lblRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 386, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setText("Pa' pistear");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 414, -1, -1));
+        lblAccion3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAccion3.setText("Accion 3");
+        lblAccion3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlMain.add(lblAccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 414, -1, -1));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home.png"))); // NOI18N
@@ -347,131 +343,154 @@ public class OccamyMusic extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseClicked
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCerrarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblInsertarArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarArtistasMouseClicked
         // TODO add your handling code here:
+        Precargador data = new Precargador();
+        data.insercionMasiva();
     }//GEN-LAST:event_lblInsertarArtistasMouseClicked
+
+    private void lblArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblArtistasMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_lblArtistasMouseClicked
+
+    private void lblRegistrarmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarmeMouseClicked
+        // TODO add your handling code here:
+        frmDatos registro = new frmDatos();
+        registro.setVisible(true);
+    }//GEN-LAST:event_lblRegistrarmeMouseClicked
+
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
+        // TODO add your handling code here:
+        this.setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizarMouseClicked
+
+    private void lblMaximizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaximizarMouseClicked
+        // TODO add your handling code here:
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }//GEN-LAST:event_lblMaximizarMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new OccamyMusic().setVisible(true);
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(OccamyMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new OccamyMusic().setVisible(true);
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnCerrar;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAccion3;
     private javax.swing.JLabel lblAlbums;
-    private javax.swing.JLabel lblArtists;
+    private javax.swing.JLabel lblArtistas;
+    private javax.swing.JLabel lblBuscarIcon;
+    private javax.swing.JLabel lblCanciones;
+    private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblFav;
-    private javax.swing.JLabel lblGenders;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInsertarArtistas;
+    private javax.swing.JLabel lblMaximizar;
+    private javax.swing.JLabel lblMenuAcciones;
+    private javax.swing.JLabel lblMenuOpciones;
+    private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblProfile;
+    private javax.swing.JLabel lblRegistrarme;
+    private javax.swing.JPanel pnlBuscarContenedor;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlTopBar;
+    private javax.swing.JTextField txfBuscador;
     // End of variables declaration//GEN-END:variables
 }

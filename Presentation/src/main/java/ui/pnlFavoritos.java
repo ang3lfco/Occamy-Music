@@ -50,7 +50,7 @@ public class pnlFavoritos extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(246, 246, 246));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/voy por el sueño de muchos.jpg"))); // NOI18N
 

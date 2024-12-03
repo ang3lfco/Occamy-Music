@@ -4,6 +4,8 @@
 
 package com.mycompany.presentation;
 
+import ui.OccamyMusic;
+
 /**
  *
  * @author martinez
@@ -11,6 +13,7 @@ package com.mycompany.presentation;
 public class Presentation {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        OccamyMusic start = new OccamyMusic();
+        start.setVisible(true);
     }
 }
