@@ -14,12 +14,16 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import services.ArtistaService;
 import services.precarga.Precargador;
 /**
  *
@@ -350,12 +354,20 @@ public class OccamyMusic extends javax.swing.JFrame {
 
     private void lblInsertarArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarArtistasMouseClicked
         // TODO add your handling code here:
-        Precargador data = new Precargador();
-        data.insercionMasiva();
+        ArtistaService artistaServ = new ArtistaService();
+        try {
+            artistaServ.autoInsertarDatos();
+        } catch (ParseException ex) {
+            Logger.getLogger(OccamyMusic.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblInsertarArtistasMouseClicked
 
     private void lblArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblArtistasMouseClicked
         // TODO add your handling code here:
+        pnlArtistas artistasPanel = new pnlArtistas();
+        contentPanel.add(artistasPanel, "Artistas");
+        CardLayout cl = (CardLayout) contentPanel.getLayout();
+        cl.show(contentPanel, "Artistas");
         
     }//GEN-LAST:event_lblArtistasMouseClicked
 
