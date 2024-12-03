@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import services.AlbumService;
 import services.ArtistaService;
 import services.precarga.Precargador;
 /**
@@ -194,6 +195,7 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblHome = new javax.swing.JLabel();
         lblFav = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
+        lblFav1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,35 +274,35 @@ public class OccamyMusic extends javax.swing.JFrame {
                 lblArtistasMouseClicked(evt);
             }
         });
-        pnlMain.add(lblArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 194, -1, -1));
+        pnlMain.add(lblArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         lblAlbums.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAlbums.setText("Álbumes");
         lblAlbums.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 226, -1, -1));
+        pnlMain.add(lblAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         lblCanciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCanciones.setText("Canciones");
         lblCanciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 258, -1, -1));
+        pnlMain.add(lblCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         lblMenuOpciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMenuOpciones.setText("Menú de opciones");
-        pnlMain.add(lblMenuOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 156, -1, -1));
+        lblMenuOpciones.setText("Navegación");
+        pnlMain.add(lblMenuOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         lblMenuAcciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMenuAcciones.setText("Menú de acciones");
-        pnlMain.add(lblMenuAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 320, -1, -1));
+        lblMenuAcciones.setText("Acciones");
+        pnlMain.add(lblMenuAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         lblInsertarArtistas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblInsertarArtistas.setText("Insertar artistas");
+        lblInsertarArtistas.setText("Inserción masiva");
         lblInsertarArtistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblInsertarArtistas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblInsertarArtistasMouseClicked(evt);
             }
         });
-        pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 358, -1, -1));
+        pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         lblRegistrarme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRegistrarme.setText("Registrarme");
@@ -310,28 +312,39 @@ public class OccamyMusic extends javax.swing.JFrame {
                 lblRegistrarmeMouseClicked(evt);
             }
         });
-        pnlMain.add(lblRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 386, -1, -1));
+        pnlMain.add(lblRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         lblAccion3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAccion3.setText("Accion 3");
+        lblAccion3.setText("Cambiar apariencia");
         lblAccion3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblAccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 414, -1, -1));
+        lblAccion3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAccion3MouseClicked(evt);
+            }
+        });
+        pnlMain.add(lblAccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home.png"))); // NOI18N
         lblHome.setText("Inicio");
         lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 63, -1, -1));
+        pnlMain.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         lblFav.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFav.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fav.png"))); // NOI18N
-        lblFav.setText("Favoritos");
+        lblFav.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ban.png"))); // NOI18N
+        lblFav.setText("No deseados");
         lblFav.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlMain.add(lblFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 95, -1, -1));
+        pnlMain.add(lblFav, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
         contentPanel.setLayout(new java.awt.CardLayout());
         pnlMain.add(contentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 470, 430));
+
+        lblFav1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFav1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fav.png"))); // NOI18N
+        lblFav1.setText("Favoritos");
+        lblFav1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlMain.add(lblFav1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -354,9 +367,12 @@ public class OccamyMusic extends javax.swing.JFrame {
 
     private void lblInsertarArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarArtistasMouseClicked
         // TODO add your handling code here:
-        ArtistaService artistaServ = new ArtistaService();
+        ArtistaService artistaService = new ArtistaService();
+        AlbumService albumService = new AlbumService();
         try {
-            artistaServ.autoInsertarDatos();
+            artistaService.autoInsertarDatos();
+            albumService.autoInsertarDatos();
+            javax.swing.JOptionPane.showMessageDialog(this, "Inserción masiva de artistas y albumes realizada con éxito.", "Completado", javax.swing.JOptionPane.OK_OPTION);
         } catch (ParseException ex) {
             Logger.getLogger(OccamyMusic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -386,6 +402,10 @@ public class OccamyMusic extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_lblMaximizarMouseClicked
+
+    private void lblAccion3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccion3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAccion3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -492,6 +512,7 @@ public class OccamyMusic extends javax.swing.JFrame {
     private javax.swing.JLabel lblCanciones;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblFav;
+    private javax.swing.JLabel lblFav1;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInsertarArtistas;
     private javax.swing.JLabel lblMaximizar;

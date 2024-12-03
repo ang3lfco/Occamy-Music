@@ -135,6 +135,11 @@ public class frmDatos extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(204, 204, 204));
         btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
 
         pnlTopBar.setBackground(new java.awt.Color(51, 51, 51));
         pnlTopBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -260,6 +265,11 @@ public class frmDatos extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnAceptarMouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
 //    /**
 //     * @param args the command line arguments
