@@ -31,7 +31,7 @@ public class DataSeeder {
             List<Document> artistas = mapper.readValue(new File(artistasPath), listType);
             
             var client = MongoClients.create("mongodb://localhost:27017");
-            MongoDatabase database = client.getDatabase("occamymusic");
+            MongoDatabase database = client.getDatabase("bibliotecaMusical7");
             MongoCollection<Document> artistasCollection = database.getCollection("artistas");
             artistasCollection.insertMany(artistas);
             
