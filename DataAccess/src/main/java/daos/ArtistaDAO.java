@@ -7,10 +7,13 @@ package daos;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
 import connection.MongoConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +27,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -142,6 +146,25 @@ public class ArtistaDAO {
         );
 
         collection.insertMany(artistas);
-        System.out.println("Inserción masiva completada.");
+        System.out.println("Inserción masiva de artistas completada.");
+    }
+    
+    public boolean verificarArtista(String nombre){
+        try {
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Artista> collection = database.getCollection("artistas", Artista.class);
+
+            List<Bson> pipeline = Arrays.asList(
+                Aggregates.match(Filters.eq("nombre", nombre)),
+                Aggregates.limit(1)
+            );
+            AggregateIterable<Artista> resultado = collection.aggregate(pipeline);
+
+            return resultado.iterator().hasNext();
+        }
+        catch(MongoException e){
+            System.out.println("Error en Mongo al intentar verificar Artistas: " + e.getMessage());
+            return false;
+        }
     }
 }

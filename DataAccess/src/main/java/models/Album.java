@@ -20,25 +20,28 @@ public class Album {
     private String genero;
     private String portadaPath;
     private List<String> canciones;
+    private String artista;
 
     public Album() {
     }
 
-    public Album(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
+    public Album(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.genero = genero;
         this.portadaPath = portadaPath;
         this.canciones = canciones;
+        this.artista = artista;
     }
 
-    public Album(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones) {
+    public Album(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.genero = genero;
         this.portadaPath = portadaPath;
         this.canciones = canciones;
+        this.artista = artista;
     }
 
     public ObjectId getId() {
@@ -89,6 +92,14 @@ public class Album {
         this.canciones = canciones;
     }
 
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -113,6 +124,6 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" + "id=" + id + ", nombre=" + nombre + ", fechaLanzamiento=" + fechaLanzamiento + ", genero=" + genero + ", portadaPath=" + portadaPath + ", canciones=" + canciones + '}';
+        return "Album{" + "id=" + id + ", nombre=" + nombre + ", fechaLanzamiento=" + fechaLanzamiento + ", genero=" + genero + ", portadaPath=" + portadaPath + ", canciones=" + canciones + ", artista=" + artista + '}';
     }
 }
