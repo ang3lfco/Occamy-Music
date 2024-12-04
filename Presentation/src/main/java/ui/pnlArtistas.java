@@ -34,6 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.ArtistaService;
+import services.UsuarioService;
 import ui.manager.SessionManager;
 
 /**
@@ -164,9 +165,13 @@ public class pnlArtistas extends javax.swing.JPanel {
         // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
             System.out.println("Artista " + artista.getNombre() + " agregado a favoritos.");
+            UsuarioService us = new UsuarioService();
+            us.agregarAFavoritos(SessionManager.getUsuarioActual().getId(), "artistas", artista.getId());
         });
         itemNoDeseados.addActionListener(e -> {
             System.out.println("Artista " + artista.getNombre() + " agregado a no deseados.");
+            UsuarioService us = new UsuarioService();
+            us.agregarNoDeseado(SessionManager.getUsuarioActual().getId(), artista.getGenero());
         });
 
         // Agregar el listener para detectar clic derecho

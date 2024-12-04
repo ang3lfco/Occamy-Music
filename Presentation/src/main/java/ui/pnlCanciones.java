@@ -34,6 +34,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.AlbumService;
+import services.UsuarioService;
+import ui.manager.SessionManager;
 
 /**
  *
@@ -71,7 +73,7 @@ public class pnlCanciones extends javax.swing.JPanel {
 
         for (AlbumDTO album : albumesDTO) {
             for (String cancion : album.getCanciones()) {
-                JPanel albumPane = createAlbumPanel(cancion, album.getNombre());
+                JPanel albumPane = createAlbumPanel(cancion, album);
                 panelAlbumes.add(albumPane);
             }
         }
@@ -120,7 +122,7 @@ public class pnlCanciones extends javax.swing.JPanel {
         }
     }
 
-    private JPanel createAlbumPanel(String cancion, String album) {
+    private JPanel createAlbumPanel(String cancion, AlbumDTO album) {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(120, 160));
         panel.setBackground(new Color(246,246,246));
@@ -149,7 +151,7 @@ public class pnlCanciones extends javax.swing.JPanel {
         gbc.gridy = 1;
         panel.add(lblNombre, gbc);
 
-        JLabel lblTipo = new JLabel(album);
+        JLabel lblTipo = new JLabel(album.getNombre());
         lblTipo.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         lblTipo.setHorizontalAlignment(JLabel.LEFT);
         lblTipo.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -168,6 +170,8 @@ public class pnlCanciones extends javax.swing.JPanel {
         // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
             System.out.println("Cancion " + cancion + " agregado a favoritos.");
+            UsuarioService us = new UsuarioService();
+            us.agregarCancionAFavoritos(SessionManager.getUsuarioActual().getId(), cancion, album.getId());
         });
         itemNoDeseados.addActionListener(e -> {
             System.out.println("Cancion " + cancion + " agregado a no deseados.");
