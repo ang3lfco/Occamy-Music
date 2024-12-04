@@ -56,7 +56,7 @@ public class ArtistaService {
         List<Artista> artistas = artistaDAO.getArtistas();
         List<ArtistaDTO> artistasDTO = new ArrayList<>();
         for(Artista artista : artistas){
-            ArtistaDTO artistaDTO = new ArtistaDTO(artista.getId(), artista.getNombre(), artista.getTipo(), artista.getImagenPath(), artista.getGenero(), entidadToDTO(artista.getIntegrantes()));
+            ArtistaDTO artistaDTO = new ArtistaDTO(artista.getId().toHexString(), artista.getNombre(), artista.getTipo(), artista.getImagenPath(), artista.getGenero(), entidadToDTO(artista.getIntegrantes()));
             artistasDTO.add(artistaDTO);
         }
         return artistasDTO;

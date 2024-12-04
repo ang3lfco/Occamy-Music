@@ -4,10 +4,15 @@
  */
 package services;
 
+import com.mongodb.client.MongoCollection;
 import daos.UsuarioDAO;
 import dtos.UsuarioDTO;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import models.Album;
 import models.Usuario;
+import org.bson.types.ObjectId;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -55,7 +60,7 @@ public class UsuarioService {
         Usuario user = usuarioDAO.login(correo);
         if(user != null){
             if(checkPassword(pass, user.getPass())){
-                return new UsuarioDTO(user.getId(), user.getNombre(), user.getCorreo(), user.getPass(), user.getImagenPath());
+                return new UsuarioDTO(user.getId().toHexString(), user.getNombre(), user.getCorreo(), user.getPass(), user.getImagenPath());
             }
             else{
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error al iniciar sesión.", JOptionPane.ERROR_MESSAGE);
@@ -74,5 +79,24 @@ public class UsuarioService {
 
     public static boolean checkPassword(String password, String hashed) {
         return BCrypt.checkpw(password, hashed);
+    }
+    
+    public List<?> obtenerFavoritos(String usuarioIdStr, String tipo){
+        return usuarioDAO.getFavoritos(usuarioIdStr, tipo);
+    }
+    
+    public boolean agregarAFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
+        return usuarioDAO.agregarAFavoritos(usuarioIdStr, tipo, favoritoIdStr);
+    }
+    public boolean eliminarDeFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
+        return usuarioDAO.eliminarDeFavoritos(usuarioIdStr, tipo, favoritoIdStr);
+    }
+    
+    public boolean agregarCancionAFavoritos(String usuarioIdStr, String tituloCancion, String albumIdStr){
+        return usuarioDAO.agregarCancionAFavoritos(usuarioIdStr, tituloCancion, albumIdStr);
+    }
+    
+    public boolean agregarNoDeseado(String usuarioIdStr, String genero){
+        return usuarioDAO.agregarBloqueo(usuarioIdStr, genero);
     }
 }

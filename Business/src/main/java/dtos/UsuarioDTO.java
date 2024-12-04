@@ -4,14 +4,13 @@
  */
 package dtos;
 
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author martinez
  */
 public class UsuarioDTO {
-    private ObjectId id;
+    private String id;
     private String nombre;
     private String correo;
     private String pass;
@@ -27,7 +26,7 @@ public class UsuarioDTO {
         this.imagenPath = imagenPath;
     }
 
-    public UsuarioDTO(ObjectId id, String nombre, String correo, String pass, String imagenPath) {
+    public UsuarioDTO(String id, String nombre, String correo, String pass, String imagenPath) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -35,11 +34,11 @@ public class UsuarioDTO {
         this.imagenPath = imagenPath;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

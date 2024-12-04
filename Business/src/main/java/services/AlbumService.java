@@ -38,7 +38,7 @@ public class AlbumService {
         List<Album> albumes = albumDAO.getAlbumes();
         List<AlbumDTO> albumesDTO = new ArrayList<>();
         for(Album album : albumes){
-            AlbumDTO albumDTO = new AlbumDTO(album.getId(), album.getNombre(), album.getFechaLanzamiento(), album.getGenero(), album.getPortadaPath(), album.getCanciones(), album.getArtista());
+            AlbumDTO albumDTO = new AlbumDTO(album.getId().toHexString(), album.getNombre(), album.getFechaLanzamiento(), album.getGenero(), album.getPortadaPath(), album.getCanciones(), album.getArtista());
             albumesDTO.add(albumDTO);
         }
         return albumesDTO;

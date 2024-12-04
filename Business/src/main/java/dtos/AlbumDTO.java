@@ -13,7 +13,7 @@ import org.bson.types.ObjectId;
  * @author martinez
  */
 public class AlbumDTO {
-    private ObjectId id;
+    private String id;
     private String nombre;
     private Date fechaLanzamiento;
     private String genero;
@@ -33,7 +33,7 @@ public class AlbumDTO {
         this.artista = artista;
     }
 
-    public AlbumDTO(ObjectId id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
+    public AlbumDTO(String id, String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -43,11 +43,11 @@ public class AlbumDTO {
         this.artista = artista;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
