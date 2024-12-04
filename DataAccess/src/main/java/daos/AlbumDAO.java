@@ -15,6 +15,7 @@ import com.mongodb.client.MongoDatabase;
 import connection.MongoConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -103,5 +104,21 @@ public class AlbumDAO {
             System.out.println("Error en Mongo al intentar insertar Albumes: " + e.getMessage());
             return false;
         }
+    }
+    
+    public List<Album> getAlbumes(){
+        MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+        MongoCollection<Album> collection = database.getCollection("albumes", Album.class);
+        
+        List<Album> albumes = new ArrayList<>();
+        for(Album album : collection.find()){
+            List<String> canciones = new ArrayList<>();
+            for(String cancion : album.getCanciones()){
+                canciones.add(cancion);
+            }
+            album.setCanciones(canciones);
+            albumes.add(album);
+        }
+        return albumes;
     }
 }

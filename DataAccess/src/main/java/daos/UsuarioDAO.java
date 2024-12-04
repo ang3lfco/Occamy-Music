@@ -54,4 +54,18 @@ public class UsuarioDAO {
             return false;
         }
     }
+    
+    public Usuario login(String correo){
+        try{
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Usuario> collection = database.getCollection("usuarios", Usuario.class);
+            Document filtro = new Document("correo", correo);
+            Usuario usuario = collection.find(filtro).first();
+            return usuario;
+        }
+        catch(MongoException e){
+            System.out.println("Error al loguear: " + e.getMessage());
+            return null;
+        }
+    }
 }

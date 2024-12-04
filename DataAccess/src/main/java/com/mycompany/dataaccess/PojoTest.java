@@ -4,11 +4,13 @@
  */
 package com.mycompany.dataaccess;
 
+import daos.AlbumDAO;
 import daos.ArtistaDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import models.Album;
 import models.Artista;
 import models.Integrante;
 
@@ -19,9 +21,14 @@ import models.Integrante;
 public class PojoTest {
     public static void main(String[] args) throws ParseException {
         
-        ArtistaDAO adao = new ArtistaDAO();
-        boolean existe = adao.verificarArtista("Adele");
-        System.out.println("existe: " + existe);
+//        AlbumDAO adao = new AlbumDAO();
+//        for(Album album : adao.getAlbumes()){
+//            System.out.println(album.toString());
+//        }
+        
+//        ArtistaDAO adao = new ArtistaDAO();
+//        boolean existe = adao.verificarArtista("Adele");
+//        System.out.println("existe: " + existe);
         
 //        // Formato para parsear las fechas
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
