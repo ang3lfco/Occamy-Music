@@ -73,4 +73,9 @@ public class UsuarioDTO {
     public void setImagenPath(String imagenPath) {
         this.imagenPath = imagenPath;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" + "id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", pass=" + pass + ", imagenPath=" + imagenPath + '}';
+    }
 }

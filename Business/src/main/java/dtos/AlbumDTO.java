@@ -98,4 +98,9 @@ public class AlbumDTO {
     public void setArtista(String artista) {
         this.artista = artista;
     }
+
+    @Override
+    public String toString() {
+        return "AlbumDTO{" + "id=" + id + ", nombre=" + nombre + ", fechaLanzamiento=" + fechaLanzamiento + ", genero=" + genero + ", portadaPath=" + portadaPath + ", canciones=" + canciones + ", artista=" + artista + '}';
+    }
 }

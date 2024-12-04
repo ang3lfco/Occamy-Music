@@ -77,4 +77,10 @@ public class IntegranteDTO {
     public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
+
+    @Override
+    public String toString() {
+        return "IntegranteDTO{" + "nombre=" + nombre + ", apellido=" + apellido + ", rol=" + rol + ", fechaIngreso=" + fechaIngreso + ", estadoActivo=" + estadoActivo + ", fechaSalida=" + fechaSalida + '}';
+    }
+    
 }

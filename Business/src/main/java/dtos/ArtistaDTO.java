@@ -86,4 +86,9 @@ public class ArtistaDTO {
     public void setIntegrantes(List<IntegranteDTO> integrantes) {
         this.integrantes = integrantes;
     }
+
+    @Override
+    public String toString() {
+        return "ArtistaDTO{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", imagenPath=" + imagenPath + ", genero=" + genero + ", integrantes=" + integrantes + '}';
+    }
 }
