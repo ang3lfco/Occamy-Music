@@ -11,13 +11,22 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import connection.MongoConnection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import models.Album;
+import models.Artista;
 import models.Usuario;
 import org.bson.Document;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -66,6 +75,164 @@ public class UsuarioDAO {
         catch(MongoException e){
             System.out.println("Error al loguear: " + e.getMessage());
             return null;
+        }
+    }
+    
+    public List<?> getFavoritos(String usuarioIdStr, String tipo){
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        
+        MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+        MongoCollection<Document> usuariosCollection = database.getCollection("usuarios");
+        MongoCollection<Artista> artistasCollection = database.getCollection("artistas", Artista.class);
+        MongoCollection<Album> albumsCollection = database.getCollection("albumes", Album.class);
+
+        Map<String, Class<?>> tipoColeccionMap = Map.of(
+            "artistas", Artista.class,
+            "albumes", Album.class
+        );
+
+        if(tipo.equals("canciones")){
+            return getCancionesFavoritas(usuarioId, albumsCollection);
+        } 
+        else if(!tipoColeccionMap.containsKey(tipo)){
+            throw new IllegalArgumentException("Tipo de favorito no válido: " + tipo);
+        }
+
+        MongoCollection<?> favoritosCollection = database.getCollection(tipo, tipoColeccionMap.get(tipo));
+
+        List<Document> pipeline = List.of(
+            new Document("$match", new Document("_id", usuarioId)),
+            new Document("$project", new Document("favoritos." + tipo, 1))
+        );
+        
+        Document resultado = usuariosCollection.aggregate(pipeline).first();
+
+        if(resultado != null && resultado.containsKey("favoritos")){
+            Document favoritos = resultado.get("favoritos", Document.class);
+            List<ObjectId> favoritosIds = favoritos.getList(tipo, ObjectId.class);
+
+            return favoritosCollection.find(Filters.in("_id", favoritosIds)).into(new ArrayList<>());
+        }
+        return Collections.emptyList();
+    }
+
+    private List<Map<String, Object>> getCancionesFavoritas(ObjectId usuarioId, MongoCollection<Album> albumsCollection){
+        MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+        MongoCollection<Document> usuariosCollection = database.getCollection("usuarios");
+
+        List<Document> pipeline = List.of(
+            new Document("$match", new Document("_id", usuarioId)),
+            new Document("$project", new Document("favoritos.canciones", 1))
+        );
+        Document resultado = usuariosCollection.aggregate(pipeline).first();
+
+        if(resultado != null && resultado.containsKey("favoritos")){
+            Document favoritos = resultado.get("favoritos", Document.class);
+            List<Document> cancionesFavoritas = favoritos.getList("canciones", Document.class);
+
+            List<Map<String, Object>> cancionesConAlbum = new ArrayList<>();
+            for(Document doc : cancionesFavoritas){
+                String titulo = doc.getString("titulo");
+                ObjectId albumId = doc.getObjectId("album");
+
+                Album album = albumsCollection.find(Filters.eq("_id", albumId)).first();
+                if(album != null){
+                    Map<String, Object> cancionInfo = new HashMap<>();
+                    cancionInfo.put("titulo", titulo);
+                    cancionInfo.put("album", albumId);
+
+                    cancionesConAlbum.add(cancionInfo);
+                }
+            }
+            return cancionesConAlbum;
+        }
+        return Collections.emptyList();
+    }
+    
+    public boolean agregarAFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        ObjectId favoritoId = new ObjectId(favoritoIdStr);
+        try{
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            if (!List.of("artistas", "albumes").contains(tipo)) {
+                throw new IllegalArgumentException("Tipo de favorito no válido: " + tipo);
+            }
+
+            Document filtro = new Document("_id", usuarioId);
+            Document actualizacion = new Document("$addToSet", new Document("favoritos." + tipo, favoritoId));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        }
+        catch(MongoException e){
+            System.out.println("Error al agregar a favoritos: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean agregarCancionAFavoritos(String usuarioIdStr, String tituloCancion, String albumIdStr) {
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        ObjectId albumId = new ObjectId(albumIdStr);
+
+        try {
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document cancion = new Document("titulo", tituloCancion)
+                                    .append("album", albumId);
+
+            Document filtro = new Document("_id", usuarioId);
+            Document actualizacion = new Document("$addToSet", new Document("favoritos.canciones", cancion));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        } catch (MongoException e) {
+            System.out.println("Error al agregar cancion a favoritos: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean eliminarDeFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        ObjectId favoritoId = new ObjectId(favoritoIdStr);
+        try {
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            if (!List.of("artistas", "albumes", "canciones").contains(tipo)) {
+                throw new IllegalArgumentException("Tipo de favorito no válido: " + tipo);
+            }
+
+            Document filtro = new Document("_id", usuarioId);
+            Document actualizacion = new Document("$pull", new Document("favoritos." + tipo, favoritoId));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        }
+        catch(MongoException e){
+            System.out.println("Error al eliminar de favoritos: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean agregarBloqueo(String usuarioIdStr, String genero) {
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+
+        try {
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document filtro = new Document("_id", usuarioId);
+
+            Document actualizacion = new Document("$addToSet", new Document("bloqueados.generos", genero));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        } catch (MongoException e) {
+            System.out.println("Error al agregar bloqueo: " + e.getMessage());
+            return false;
         }
     }
 }
