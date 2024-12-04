@@ -5,10 +5,14 @@
 package services;
 
 import daos.AlbumDAO;
+import dtos.AlbumDTO;
+import dtos.ArtistaDTO;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import models.Album;
+import models.Artista;
 
 /**
  *
@@ -28,5 +32,15 @@ public class AlbumService {
     
     public void autoInsertarDatos() throws ParseException{
         albumDAO.insercionMasiva();
+    }
+    
+    public List<AlbumDTO> obtenerAlbumes(){
+        List<Album> albumes = albumDAO.getAlbumes();
+        List<AlbumDTO> albumesDTO = new ArrayList<>();
+        for(Album album : albumes){
+            AlbumDTO albumDTO = new AlbumDTO(album.getId(), album.getNombre(), album.getFechaLanzamiento(), album.getGenero(), album.getPortadaPath(), album.getCanciones(), album.getArtista());
+            albumesDTO.add(albumDTO);
+        }
+        return albumesDTO;
     }
 }

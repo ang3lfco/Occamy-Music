@@ -8,6 +8,7 @@ import daos.UsuarioDAO;
 import dtos.UsuarioDTO;
 import javax.swing.JOptionPane;
 import models.Usuario;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -30,11 +31,11 @@ public class UsuarioService {
             }
             else{
                 Usuario usuario = new Usuario(
-                usuarioDTO.getNombre(), 
-                usuarioDTO.getCorreo(), 
-                usuarioDTO.getPass(), 
-                usuarioDTO.getImagenPath());
-                
+                    usuarioDTO.getNombre(), 
+                    usuarioDTO.getCorreo(),
+                    hashedPassword(usuarioDTO.getPass()),
+                    usuarioDTO.getImagenPath()
+                );
                 try{
                     return usuarioDAO.insertar(usuario);
                 }
@@ -48,5 +49,30 @@ public class UsuarioService {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    public UsuarioDTO iniciarSesion(String correo, String pass){
+        Usuario user = usuarioDAO.login(correo);
+        if(user != null){
+            if(checkPassword(pass, user.getPass())){
+                return new UsuarioDTO(user.getId(), user.getNombre(), user.getCorreo(), user.getPass(), user.getImagenPath());
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Error al iniciar sesión.", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error al iniciar sesión. ");
+            return null;
+        }
+    }
+    
+    public static String hashedPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public static boolean checkPassword(String password, String hashed) {
+        return BCrypt.checkpw(password, hashed);
     }
 }
