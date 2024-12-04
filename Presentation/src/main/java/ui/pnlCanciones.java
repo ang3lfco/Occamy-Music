@@ -34,19 +34,18 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.AlbumService;
-import ui.manager.SessionManager;
 
 /**
  *
  * @author martinez
  */
-public class pnlAlbumes extends javax.swing.JPanel {
+public class pnlCanciones extends javax.swing.JPanel {
     private AlbumService as;
     private List<AlbumDTO> albumesDTO = new ArrayList<>();
     /**
      * Creates new form pnlArtistas
      */
-    public pnlAlbumes() {
+    public pnlCanciones() {
         initComponents();
         this.as = new AlbumService();
         albumesDTO = as.obtenerAlbumes();
@@ -66,15 +65,20 @@ public class pnlAlbumes extends javax.swing.JPanel {
         jScrollPane1.setBorder(null);
         this.setBackground(new Color(246,246,246));
 
-        panelAlbumes.setLayout(new GridLayout((int) Math.ceil(albumesDTO.size() / 4.0), 4, 0, 0));
+//        panelAlbumes.setLayout(new GridLayout((int) Math.ceil(albumesDTO.size() / 4.0), 4, 0, 0));
+        panelAlbumes.setLayout(new GridLayout(0, 3, 0, 0)); // Layout dinámico
         panelAlbumes.setBackground(new Color(246,246,246));
 
         for (AlbumDTO album : albumesDTO) {
-            JPanel albumPane = createAlbumPanel(album);
-            panelAlbumes.add(albumPane);
+            for (String cancion : album.getCanciones()) {
+                JPanel albumPane = createAlbumPanel(cancion, album.getNombre());
+                panelAlbumes.add(albumPane);
+            }
         }
+        panelAlbumes.revalidate();
+        panelAlbumes.repaint();
 
-        panelAlbumes.setPreferredSize(new Dimension(380, (int) (Math.ceil(albumesDTO.size() / 4.0) * 150)));
+//        panelAlbumes.setPreferredSize(new Dimension(380, (int) (Math.ceil(albumesDTO.size() / 4.0) * 150)));
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         jScrollPane1.setViewportView(panelAlbumes);
         add(jScrollPane1, BorderLayout.CENTER);
@@ -116,12 +120,12 @@ public class pnlAlbumes extends javax.swing.JPanel {
         }
     }
 
-    private JPanel createAlbumPanel(AlbumDTO album) {
+    private JPanel createAlbumPanel(String cancion, String album) {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(120, 160));
         panel.setBackground(new Color(246,246,246));
-        panel.setBorder(null);
         panel.setLayout(new GridBagLayout());
+        panel.setBorder(null); 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.anchor = GridBagConstraints.WEST;
@@ -136,7 +140,7 @@ public class pnlAlbumes extends javax.swing.JPanel {
 
         int imagenAncho = lblImagen.getPreferredSize().width;
 
-        JLabel lblNombre = new JLabel(album.getNombre());
+        JLabel lblNombre = new JLabel(cancion);
         lblNombre.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblNombre.setHorizontalAlignment(JLabel.LEFT);
         lblNombre.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -145,7 +149,7 @@ public class pnlAlbumes extends javax.swing.JPanel {
         gbc.gridy = 1;
         panel.add(lblNombre, gbc);
 
-        JLabel lblTipo = new JLabel(album.getArtista());
+        JLabel lblTipo = new JLabel(album);
         lblTipo.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         lblTipo.setHorizontalAlignment(JLabel.LEFT);
         lblTipo.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -153,7 +157,7 @@ public class pnlAlbumes extends javax.swing.JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(lblTipo, gbc);
-        
+
         // Crear el menú emergente
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem itemFavoritos = new JMenuItem("Agregar a favoritos");
@@ -163,10 +167,10 @@ public class pnlAlbumes extends javax.swing.JPanel {
 
         // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
-            System.out.println("Album " + album.getNombre() + " agregado a favoritos.");
+            System.out.println("Cancion " + cancion + " agregado a favoritos.");
         });
         itemNoDeseados.addActionListener(e -> {
-            System.out.println("Album " + album.getNombre() + " agregado a no deseados.");
+            System.out.println("Cancion " + cancion + " agregado a no deseados.");
         });
 
         // Agregar el listener para detectar clic derecho
@@ -178,11 +182,11 @@ public class pnlAlbumes extends javax.swing.JPanel {
                     popupMenu.show(panel, e.getX(), e.getY());
                 } else if (e.getButton() == MouseEvent.BUTTON1) { // Botón izquierdo del mouse
                     // Acción para clic izquierdo
-                    System.out.println("Album seleccionado: " + album.getNombre());
+                    System.out.println("Cancion seleccionada: " + cancion);
                 }
             }
         });
-
+        
         return panel;
     }
     /**

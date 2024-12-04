@@ -4,31 +4,39 @@
  */
 package ui;
 
+import dtos.UsuarioDTO;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import services.UsuarioService;
 import ui.ext.CustomRoundedButton;
+import ui.ext.CustomRoundedPasswordField;
 import ui.ext.CustomRoundedTextField;
+import ui.manager.SessionManager;
 
 /**
  *
  * @author martinez
  */
 public class pnlLogin extends javax.swing.JPanel {
-
+    private UsuarioService usuarioService;
+    private CustomRoundedTextField emailField;
+    private CustomRoundedPasswordField passField;
     /**
      * Creates new form pnlLogin
      */
     public pnlLogin() {
         initComponents();
+        usuarioService = new UsuarioService();
+        
         // Configurar pnlReemplazar en lugar de pnlPrincipal
         pnlCorreo.setLayout(new FlowLayout()); // Configura el layout del panel a FlowLayout o el que prefieras
         pnlPassword.setLayout(new FlowLayout());
         
         // Crear los CustomRoundedTextField
-        CustomRoundedTextField emailField = new CustomRoundedTextField("Correo Electrónico", "email.png");
-        CustomRoundedTextField passField = new CustomRoundedTextField("Password", "password.png");
+        emailField = new CustomRoundedTextField("Correo Electrónico", "email.png");
+        passField = new CustomRoundedPasswordField("Password", "password.png");
 
         // Vaciar el panel (opcional, en caso de que ya tenga contenido)
         pnlCorreo.removeAll();
@@ -49,8 +57,20 @@ public class pnlLogin extends javax.swing.JPanel {
         
         pnlButton.setLayout(new FlowLayout());
         pnlButton.setBackground(new Color(246,246,246));
-        CustomRoundedButton myButton = new CustomRoundedButton("Iniciar sesión");
-        pnlButton.add(myButton);
+        CustomRoundedButton btnLogin = new CustomRoundedButton("Iniciar sesión");
+        
+        btnLogin.addActionListener(e -> {
+            String password = new String(passField.getPassword());
+            UsuarioDTO usuarioDTO = usuarioService.iniciarSesion(emailField.getText(), password);
+            if(usuarioDTO != null){
+                SessionManager.setUsuarioActual(usuarioDTO);
+                JOptionPane.showMessageDialog(this, "Bienvenido, ahora puedes navegar.", "Acceso verificado", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Advertencia, ingresa correctamente.", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        pnlButton.add(btnLogin);
     }
 
     /**
@@ -183,14 +203,7 @@ public class pnlLogin extends javax.swing.JPanel {
 
     private void pnlButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlButtonMouseClicked
         // TODO add your handling code here:
-//        String user = pnlCorreo.getText();
-//        String pass = (pnlPassword.getText());
-//        if(user.equals("admin") && pass.equals("123")){
-//            ((OccamyMusic)SwingUtilities.getWindowAncestor(this)).setLogged(true);
-//            OccamyMusic frmOccamy = new OccamyMusic();
-//            frmOccamy.setVisible(true);
-//            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
-//        }
+        
     }//GEN-LAST:event_pnlButtonMouseClicked
 
 

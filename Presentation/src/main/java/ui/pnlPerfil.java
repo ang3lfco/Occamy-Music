@@ -4,20 +4,25 @@
  */
 package ui;
 
+import dtos.UsuarioDTO;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import ui.manager.SessionManager;
 
 /**
  *
  * @author martinez
  */
 public class pnlPerfil extends javax.swing.JPanel {
-
     /**
      * Creates new form Profile
      */
     public pnlPerfil() {
         initComponents();
+        if(SessionManager.isLogueado()){
+            lblCorreo.setText(SessionManager.getUsuarioActual().getCorreo());
+            lblNombre.setText(SessionManager.getUsuarioActual().getNombre());
+        }
     }
 
     /**
@@ -31,10 +36,10 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblCorreo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -73,11 +78,11 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel5.setText("Estadisticas");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("angelfco@example.com");
-        jTextField1.setBorder(null);
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 20));
+        lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblCorreo.setText("angelfco@example.com");
+        lblCorreo.setBorder(null);
+        add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 20));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -89,11 +94,11 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel3.setText("Bienvenido");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 450, -1));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("Angel Francisco Martinez");
-        jTextField3.setBorder(null);
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 450, -1));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblNombre.setText("Angel Francisco Martinez");
+        lblNombre.setBorder(null);
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 450, -1));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/morat.jpg"))); // NOI18N
@@ -144,10 +149,16 @@ public class pnlPerfil extends javax.swing.JPanel {
 
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         // TODO add your handling code here:
-        ((OccamyMusic)SwingUtilities.getWindowAncestor(this)).setLogged(false);
+        SessionManager.cerrarSesion();
         JOptionPane.showMessageDialog(this, "Cierre de sesión exitoso");
-        OccamyMusic mainFrame = (OccamyMusic) SwingUtilities.getWindowAncestor(this);
-        mainFrame.switchPanel("Login");
+        OccamyMusic occamy = new OccamyMusic();
+        ((OccamyMusic)SwingUtilities.getWindowAncestor(this)).dispose();
+        occamy.setVisible(true);
+        
+//        ((OccamyMusic)SwingUtilities.getWindowAncestor(this)).setLogged(false);
+//        JOptionPane.showMessageDialog(this, "Cierre de sesión exitoso");
+//        OccamyMusic mainFrame = (OccamyMusic) SwingUtilities.getWindowAncestor(this);
+//        mainFrame.switchPanel("Login");
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
 
@@ -165,8 +176,8 @@ public class pnlPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblCerrarSesion;
+    private javax.swing.JTextField lblCorreo;
+    private javax.swing.JTextField lblNombre;
     // End of variables declaration//GEN-END:variables
 }

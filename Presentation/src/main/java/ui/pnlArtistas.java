@@ -26,12 +26,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.ArtistaService;
+import ui.manager.SessionManager;
 
 /**
  *
@@ -150,11 +153,33 @@ public class pnlArtistas extends javax.swing.JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(lblTipo, gbc);
+        
+        // Crear el menú emergente
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem itemFavoritos = new JMenuItem("Agregar a favoritos");
+        JMenuItem itemNoDeseados = new JMenuItem("Agregar a no deseados");
+        popupMenu.add(itemFavoritos);
+        popupMenu.add(itemNoDeseados);
 
+        // Agregar acciones a las opciones del menú
+        itemFavoritos.addActionListener(e -> {
+            System.out.println("Artista " + artista.getNombre() + " agregado a favoritos.");
+        });
+        itemNoDeseados.addActionListener(e -> {
+            System.out.println("Artista " + artista.getNombre() + " agregado a no deseados.");
+        });
+
+        // Agregar el listener para detectar clic derecho
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Artista seleccionado: " + artista.getNombre());
+                if (e.getButton() == MouseEvent.BUTTON3) { // Botón derecho del mouse
+                    // Muestra el menú contextual en la posición del clic derecho
+                    popupMenu.show(panel, e.getX(), e.getY());
+                } else if (e.getButton() == MouseEvent.BUTTON1) { // Botón izquierdo del mouse
+                    // Acción para clic izquierdo
+                    System.out.println("Artista seleccionado: " + artista.getNombre());
+                }
             }
         });
 
