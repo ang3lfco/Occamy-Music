@@ -6,6 +6,7 @@ package interfaces;
 
 import dtos.UsuarioDTO;
 import java.util.List;
+import models.Usuario;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public interface IUsuarioService {
     boolean agregarUsuario(UsuarioDTO usuarioDTO);
+    boolean actualizarDatos(UsuarioDTO usuarioDTO);
     UsuarioDTO iniciarSesion(String correo, String pass);
     List<?> getFavoritos(String usuarioIdStr, String tipo);
     boolean agregarAFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr);

@@ -65,6 +65,17 @@ public class UsuarioService implements IUsuarioService{
     }
     
     @Override
+    public boolean actualizarDatos(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario();
+        usuario.setId(new ObjectId(usuarioDTO.getId()));
+        usuario.setNombre(usuarioDTO.getNombre());
+        usuario.setCorreo(usuarioDTO.getCorreo());
+        usuario.setPass(hashedPassword(usuarioDTO.getPass()));
+        usuario.setImagenPath(usuarioDTO.getImagenPath());
+        return usuarioDAO.actualizar(usuario);
+    }
+    
+    @Override
     public UsuarioDTO iniciarSesion(String correo, String pass){
         Usuario user = usuarioDAO.login(correo);
         if(user != null){

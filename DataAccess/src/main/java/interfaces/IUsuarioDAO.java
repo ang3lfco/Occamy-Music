@@ -27,4 +27,5 @@ public interface IUsuarioDAO {
     boolean agregarBloqueo(String usuarioIdStr, String genero);
     List<String> getGenerosNoDeseados(String usuarioIdStr);
     boolean eliminarBloqueo(String usuarioIdStr, String genero);
+    boolean actualizar(Usuario usuario);
 }

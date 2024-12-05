@@ -83,6 +83,29 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
     
     @Override
+    public boolean actualizar(Usuario usuario) {
+        try {
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Usuario> collection = database.getCollection("usuarios", Usuario.class);
+
+            Document filtro = new Document("_id", usuario.getId());
+
+            Document actualizacion = new Document("$set", new Document()
+                    .append("nombre", usuario.getNombre())
+                    .append("correo", usuario.getCorreo())
+                    .append("pass", usuario.getPass())
+                    .append("imagenPath", usuario.getImagenPath())
+            );
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        } catch (MongoException e) {
+            System.out.println("Error al actualizar el usuario: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    @Override
     public Usuario login(String correo){
         try{
             MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
@@ -297,6 +320,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         return generosNoDeseados;
     }
     
+    @Override
     public boolean eliminarBloqueo(String usuarioIdStr, String genero) {
         ObjectId usuarioId = new ObjectId(usuarioIdStr);
         try{

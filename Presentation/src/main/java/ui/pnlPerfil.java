@@ -63,7 +63,7 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnEditarDatos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(246, 246, 246));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,11 +158,16 @@ public class pnlPerfil extends javax.swing.JPanel {
         });
         add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Editar");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        btnEditarDatos.setBackground(new java.awt.Color(0, 0, 0));
+        btnEditarDatos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarDatos.setText("Editar");
+        btnEditarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarDatosMouseClicked(evt);
+            }
+        });
+        add(btnEditarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
@@ -179,9 +184,15 @@ public class pnlPerfil extends javax.swing.JPanel {
 //        mainFrame.switchPanel("Login");
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    private void btnEditarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarDatosMouseClicked
+        // TODO add your handling code here:
+        frmActualizar datos = new frmActualizar();
+        datos.setVisible(true);
+    }//GEN-LAST:event_btnEditarDatosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEditarDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
