@@ -4,29 +4,20 @@
  */
 package ui;
 
+import interfaces.IAlbumService;
+import interfaces.IArtistaService;
 import ui.ext.RoundedPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.RoundRectangle2D;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
 import services.AlbumService;
 import services.ArtistaService;
-import services.precarga.Precargador;
 import ui.manager.SessionManager;
 /**
  *
@@ -95,9 +86,8 @@ public class OccamyMusic extends javax.swing.JFrame {
                 setLocation(evt.getXOnScreen() - xMouse, evt.getYOnScreen() - yMouse);
             }
         });
-        
-        contentPanel.add(loginPanel, "Login");
         contentPanel.add(homePanel, "Home");
+        contentPanel.add(loginPanel, "Login");
         contentPanel.add(profilePanel, "Perfil");
         contentPanel.add(artistasPanel, "Artistas");
         contentPanel.add(albumesPanel, "Albumes");
@@ -171,6 +161,7 @@ public class OccamyMusic extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(SessionManager.isLogueado()){
+                    favoritosPanel.cargarFavoritos();
                     switchPanel("Favoritos");
                 }
                 else{
@@ -187,6 +178,18 @@ public class OccamyMusic extends javax.swing.JFrame {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Debe iniciar sesion para acceder a esta seccion.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+        
+        lblLogin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(!SessionManager.isLogueado()){
+                    switchPanel("Login");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Debes cerrar la sesion actual.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -222,11 +225,12 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblMenuAcciones = new javax.swing.JLabel();
         lblInsertarArtistas = new javax.swing.JLabel();
         lblRegistrarme = new javax.swing.JLabel();
-        lblAccion3 = new javax.swing.JLabel();
+        lblLogin = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
         lblBloqueados = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
         lblFavoritos = new javax.swing.JLabel();
+        lblAddArtista = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -338,7 +342,7 @@ public class OccamyMusic extends javax.swing.JFrame {
 
         lblMenuAcciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMenuAcciones.setText("Acciones");
-        pnlMain.add(lblMenuAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+        pnlMain.add(lblMenuAcciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         lblInsertarArtistas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInsertarArtistas.setText("Inserción masiva");
@@ -348,7 +352,7 @@ public class OccamyMusic extends javax.swing.JFrame {
                 lblInsertarArtistasMouseClicked(evt);
             }
         });
-        pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+        pnlMain.add(lblInsertarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         lblRegistrarme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRegistrarme.setText("Registrarme");
@@ -358,17 +362,17 @@ public class OccamyMusic extends javax.swing.JFrame {
                 lblRegistrarmeMouseClicked(evt);
             }
         });
-        pnlMain.add(lblRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        pnlMain.add(lblRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
-        lblAccion3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAccion3.setText("Cambiar apariencia");
-        lblAccion3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAccion3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLogin.setText("Iniciar sesión");
+        lblLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAccion3MouseClicked(evt);
+                lblLoginMouseClicked(evt);
             }
         });
-        pnlMain.add(lblAccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+        pnlMain.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home.png"))); // NOI18N
@@ -380,6 +384,11 @@ public class OccamyMusic extends javax.swing.JFrame {
         lblBloqueados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ban.png"))); // NOI18N
         lblBloqueados.setText("No deseados");
         lblBloqueados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBloqueados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBloqueadosMouseClicked(evt);
+            }
+        });
         pnlMain.add(lblBloqueados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -396,6 +405,10 @@ public class OccamyMusic extends javax.swing.JFrame {
             }
         });
         pnlMain.add(lblFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        lblAddArtista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAddArtista.setText("Insertar artista");
+        pnlMain.add(lblAddArtista, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -418,8 +431,8 @@ public class OccamyMusic extends javax.swing.JFrame {
 
     private void lblInsertarArtistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarArtistasMouseClicked
         // TODO add your handling code here:
-        ArtistaService artistaService = new ArtistaService();
-        AlbumService albumService = new AlbumService();
+        IArtistaService artistaService = new ArtistaService();
+        IAlbumService albumService = new AlbumService();
         try {
             artistaService.autoInsertarDatos();
             albumService.autoInsertarDatos();
@@ -458,9 +471,18 @@ public class OccamyMusic extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_lblMaximizarMouseClicked
 
-    private void lblAccion3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccion3MouseClicked
+    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblAccion3MouseClicked
+        if(!SessionManager.isLogueado()){
+            pnlLogin iniciarSesion = new pnlLogin();
+            contentPanel.add(iniciarSesion, "Login");
+            CardLayout cl = (CardLayout) contentPanel.getLayout();
+            cl.show(contentPanel, "Login");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debes cerrar la sesion actual.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_lblLoginMouseClicked
 
     private void lblCancionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancionesMouseClicked
         // TODO add your handling code here:
@@ -492,6 +514,16 @@ public class OccamyMusic extends javax.swing.JFrame {
 
     private void lblFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFavoritosMouseClicked
         // TODO add your handling code here:
+        if(SessionManager.isLogueado()){
+            pnlFavoritos favoritosPanel = new pnlFavoritos();
+            favoritosPanel.cargarFavoritos();
+            contentPanel.add(favoritosPanel, "Favoritos");
+            CardLayout cl = (CardLayout) contentPanel.getLayout();
+            cl.show(contentPanel, "Favoritos");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debe iniciar sesion para acceder a esta seccion.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_lblFavoritosMouseClicked
 
     private void lblProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProfileMouseClicked
@@ -506,6 +538,20 @@ public class OccamyMusic extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe iniciar sesion para acceder a esta seccion.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_lblProfileMouseClicked
+
+    private void lblBloqueadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBloqueadosMouseClicked
+        // TODO add your handling code here:
+        if(SessionManager.isLogueado()){
+            pnlBloqueados bloqueadosPanel = new pnlBloqueados();
+            bloqueadosPanel.cargarBloqueados();
+            contentPanel.add(bloqueadosPanel, "Bloqueados");
+            CardLayout cl = (CardLayout) contentPanel.getLayout();
+            cl.show(contentPanel, "Bloqueados");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debe iniciar sesion para acceder a esta seccion.", "Acceso denegado", javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_lblBloqueadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -605,7 +651,7 @@ public class OccamyMusic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel lblAccion3;
+    private javax.swing.JLabel lblAddArtista;
     private javax.swing.JLabel lblAlbumes;
     private javax.swing.JLabel lblArtistas;
     private javax.swing.JLabel lblBloqueados;
@@ -615,6 +661,7 @@ public class OccamyMusic extends javax.swing.JFrame {
     private javax.swing.JLabel lblFavoritos;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInsertarArtistas;
+    private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblMaximizar;
     private javax.swing.JLabel lblMenuAcciones;
     private javax.swing.JLabel lblMenuOpciones;

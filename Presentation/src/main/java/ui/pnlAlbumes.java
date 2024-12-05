@@ -5,12 +5,12 @@
 package ui;
 
 import dtos.AlbumDTO;
+import interfaces.IAlbumService;
+import interfaces.IUsuarioService;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -20,6 +20,7 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -31,7 +32,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.AlbumService;
 import services.UsuarioService;
@@ -42,7 +42,8 @@ import ui.manager.SessionManager;
  * @author martinez
  */
 public class pnlAlbumes extends javax.swing.JPanel {
-    private AlbumService as;
+    private IAlbumService as;
+    private IUsuarioService us;
     private List<AlbumDTO> albumesDTO = new ArrayList<>();
     /**
      * Creates new form pnlArtistas
@@ -50,6 +51,7 @@ public class pnlAlbumes extends javax.swing.JPanel {
     public pnlAlbumes() {
         initComponents();
         this.as = new AlbumService();
+        this.us = new UsuarioService();
         albumesDTO = as.obtenerAlbumes();
 
         jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -69,10 +71,24 @@ public class pnlAlbumes extends javax.swing.JPanel {
 
         panelAlbumes.setLayout(new GridLayout((int) Math.ceil(albumesDTO.size() / 4.0), 4, 0, 0));
         panelAlbumes.setBackground(new Color(246,246,246));
-
-        for (AlbumDTO album : albumesDTO) {
-            JPanel albumPane = createAlbumPanel(album);
-            panelAlbumes.add(albumPane);
+        
+        if(SessionManager.isLogueado()){
+            List<String> baneados = us.getGenerosNoDeseados(SessionManager.getUsuarioActual().getId());
+            if(baneados.isEmpty()){
+                for(AlbumDTO album : albumesDTO){
+                    JPanel albumPane = createAlbumPanel(album);
+                    panelAlbumes.add(albumPane);
+                }
+            }
+            else{
+                for (AlbumDTO album : albumesDTO) {
+                    if (baneados.contains(album.getGenero())) {
+                        continue;
+                    }
+                    JPanel albumPane = createAlbumPanel(album);
+                    panelAlbumes.add(albumPane);
+                }
+            }
         }
 
         panelAlbumes.setPreferredSize(new Dimension(380, (int) (Math.ceil(albumesDTO.size() / 4.0) * 150)));
@@ -128,7 +144,16 @@ public class pnlAlbumes extends javax.swing.JPanel {
         gbc.anchor = GridBagConstraints.WEST;
 
         JLabel lblImagen = new JLabel();
-        lblImagen.setIcon(new ImageIcon("portada.png"));
+        try {
+            URL imageUrl = new URL(album.getPortadaPath());
+            ImageIcon imageIcon = new ImageIcon(imageUrl);
+            lblImagen.setIcon(imageIcon);
+        } catch (Exception e) {
+            e.printStackTrace();
+            lblImagen.setText("Imagen no disponible");
+            lblImagen.setHorizontalAlignment(JLabel.CENTER);
+        }
+        
         lblImagen.setHorizontalAlignment(JLabel.LEFT);
         lblImagen.setAlignmentX(Component.LEFT_ALIGNMENT);
         gbc.gridx = 0;
@@ -155,39 +180,34 @@ public class pnlAlbumes extends javax.swing.JPanel {
         gbc.gridy = 2;
         panel.add(lblTipo, gbc);
         
-        // Crear el menú emergente
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem itemFavoritos = new JMenuItem("Agregar a favoritos");
         JMenuItem itemNoDeseados = new JMenuItem("Agregar a no deseados");
         popupMenu.add(itemFavoritos);
         popupMenu.add(itemNoDeseados);
 
-        // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
             System.out.println("Album " + album.getNombre() + " agregado a favoritos.");
-            UsuarioService us = new UsuarioService();
+            us = new UsuarioService();
             us.agregarAFavoritos(SessionManager.getUsuarioActual().getId(), "albumes", album.getId());
         });
         itemNoDeseados.addActionListener(e -> {
             System.out.println("Album " + album.getNombre() + " agregado a no deseados.");
-            UsuarioService us = new UsuarioService();
+            us = new UsuarioService();
             us.agregarNoDeseado(SessionManager.getUsuarioActual().getId(), album.getGenero());
         });
 
-        // Agregar el listener para detectar clic derecho
-        panel.addMouseListener(new MouseAdapter() {
+        panel.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON3) { // Botón derecho del mouse
-                    // Muestra el menú contextual en la posición del clic derecho
+                if (e.getButton() == MouseEvent.BUTTON3){
                     popupMenu.show(panel, e.getX(), e.getY());
-                } else if (e.getButton() == MouseEvent.BUTTON1) { // Botón izquierdo del mouse
-                    // Acción para clic izquierdo
+                } 
+                else if (e.getButton() == MouseEvent.BUTTON1){
                     System.out.println("Album seleccionado: " + album.getNombre());
                 }
             }
         });
-
         return panel;
     }
     /**

@@ -5,6 +5,10 @@
 package ui;
 
 import dtos.UsuarioDTO;
+import java.awt.Component;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import ui.manager.SessionManager;
@@ -22,6 +26,18 @@ public class pnlPerfil extends javax.swing.JPanel {
         if(SessionManager.isLogueado()){
             lblCorreo.setText(SessionManager.getUsuarioActual().getCorreo());
             lblNombre.setText(SessionManager.getUsuarioActual().getNombre());
+            try {
+                URL imageUrl = new URL(SessionManager.getUsuarioActual().getImagenPath());
+                ImageIcon imageIcon = new ImageIcon(imageUrl);
+                lblPicture.setIcon(imageIcon);
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                lblPicture.setText("Imagen no disponible");
+                lblPicture.setHorizontalAlignment(JLabel.CENTER);
+            }
+            lblPicture.setHorizontalAlignment(JLabel.LEFT);
+            lblPicture.setAlignmentX(Component.LEFT_ALIGNMENT);
         }
     }
 
@@ -32,7 +48,7 @@ public class pnlPerfil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        lblPicture = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -52,9 +68,9 @@ public class pnlPerfil extends javax.swing.JPanel {
         setBackground(new java.awt.Color(246, 246, 246));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile.jpg"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 90, 90));
+        lblPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile.jpg"))); // NOI18N
+        add(lblPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 90, 90));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/estadisticas.jpeg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
@@ -78,9 +94,10 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel5.setText("Estadisticas");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
+        lblCorreo.setBackground(new java.awt.Color(246, 246, 246));
         lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        lblCorreo.setText("angelfco@example.com");
+        lblCorreo.setText("emailhere@example.com");
         lblCorreo.setBorder(null);
         add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 20));
 
@@ -94,9 +111,10 @@ public class pnlPerfil extends javax.swing.JPanel {
         jLabel3.setText("Bienvenido");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 450, -1));
 
+        lblNombre.setBackground(new java.awt.Color(246, 246, 246));
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lblNombre.setText("Angel Francisco Martinez");
+        lblNombre.setText("Name here");
         lblNombre.setBorder(null);
         add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 450, -1));
 
@@ -169,7 +187,6 @@ public class pnlPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -179,5 +196,6 @@ public class pnlPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JTextField lblCorreo;
     private javax.swing.JTextField lblNombre;
+    private javax.swing.JLabel lblPicture;
     // End of variables declaration//GEN-END:variables
 }

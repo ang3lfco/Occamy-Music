@@ -4,13 +4,14 @@
  */
 package ui;
 
+import dtos.AlbumDTO;
 import dtos.ArtistaDTO;
+import interfaces.IArtistaService;
+import interfaces.IUsuarioService;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -20,6 +21,7 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -31,7 +33,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.ArtistaService;
 import services.UsuarioService;
@@ -42,7 +43,8 @@ import ui.manager.SessionManager;
  * @author martinez
  */
 public class pnlArtistas extends javax.swing.JPanel {
-    private ArtistaService as;
+    private IArtistaService as;
+    private IUsuarioService us;
     private List<ArtistaDTO> artistasDTO = new ArrayList<>();
     /**
      * Creates new form pnlArtistas
@@ -50,6 +52,7 @@ public class pnlArtistas extends javax.swing.JPanel {
     public pnlArtistas() {
         initComponents();
         this.as = new ArtistaService();
+        this.us = new UsuarioService();
         artistasDTO = as.obtenerArtistas();
 
         jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -70,11 +73,25 @@ public class pnlArtistas extends javax.swing.JPanel {
         panelArtistas.setLayout(new GridLayout((int) Math.ceil(artistasDTO.size() / 4.0), 4, 0, 0));
         panelArtistas.setBackground(new Color(246,246,246));
 
-        for (ArtistaDTO artista : artistasDTO) {
-            JPanel artistaPane = createArtistaPanel(artista);
-            panelArtistas.add(artistaPane);
+        if(SessionManager.isLogueado()){
+            List<String> baneados = us.getGenerosNoDeseados(SessionManager.getUsuarioActual().getId());
+            if(baneados.isEmpty()){
+                for (ArtistaDTO artista : artistasDTO){
+                    JPanel artistaPane = createArtistaPanel(artista);
+                    panelArtistas.add(artistaPane);
+                }
+            }
+            else{
+                for (ArtistaDTO artista : artistasDTO) {
+                    if (baneados.contains(artista.getGenero())) {
+                        continue;
+                    }
+                    JPanel artistaPane = createArtistaPanel(artista);
+                    panelArtistas.add(artistaPane);
+                }
+            }
         }
-
+        
         panelArtistas.setPreferredSize(new Dimension(380, (int) (Math.ceil(artistasDTO.size() / 4.0) * 150)));
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         jScrollPane1.setViewportView(panelArtistas);
@@ -120,7 +137,7 @@ public class pnlArtistas extends javax.swing.JPanel {
     private JPanel createArtistaPanel(ArtistaDTO artista) {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(120, 160));
-        panel.setBackground(new Color(246,246,246));
+        panel.setBackground(new Color(246, 246, 246));
         panel.setBorder(null);
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -128,7 +145,17 @@ public class pnlArtistas extends javax.swing.JPanel {
         gbc.anchor = GridBagConstraints.WEST;
 
         JLabel lblImagen = new JLabel();
-        lblImagen.setIcon(new ImageIcon("portada.png"));
+        try {
+            // Cargar imagen desde una URL web
+            URL imageUrl = new URL(artista.getImagenPath());
+            ImageIcon imageIcon = new ImageIcon(imageUrl);
+            lblImagen.setIcon(imageIcon);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Mostrar un mensaje o una imagen predeterminada en caso de error
+            lblImagen.setText("Imagen no disponible");
+            lblImagen.setHorizontalAlignment(JLabel.CENTER);
+        }
         lblImagen.setHorizontalAlignment(JLabel.LEFT);
         lblImagen.setAlignmentX(Component.LEFT_ALIGNMENT);
         gbc.gridx = 0;
@@ -154,7 +181,7 @@ public class pnlArtistas extends javax.swing.JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(lblTipo, gbc);
-        
+
         // Crear el menú emergente
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem itemFavoritos = new JMenuItem("Agregar a favoritos");
@@ -165,12 +192,12 @@ public class pnlArtistas extends javax.swing.JPanel {
         // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
             System.out.println("Artista " + artista.getNombre() + " agregado a favoritos.");
-            UsuarioService us = new UsuarioService();
+            us = new UsuarioService();
             us.agregarAFavoritos(SessionManager.getUsuarioActual().getId(), "artistas", artista.getId());
         });
         itemNoDeseados.addActionListener(e -> {
             System.out.println("Artista " + artista.getNombre() + " agregado a no deseados.");
-            UsuarioService us = new UsuarioService();
+            us = new UsuarioService();
             us.agregarNoDeseado(SessionManager.getUsuarioActual().getId(), artista.getGenero());
         });
 
@@ -179,10 +206,8 @@ public class pnlArtistas extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON3) { // Botón derecho del mouse
-                    // Muestra el menú contextual en la posición del clic derecho
                     popupMenu.show(panel, e.getX(), e.getY());
                 } else if (e.getButton() == MouseEvent.BUTTON1) { // Botón izquierdo del mouse
-                    // Acción para clic izquierdo
                     System.out.println("Artista seleccionado: " + artista.getNombre());
                 }
             }

@@ -5,12 +5,12 @@
 package ui;
 
 import dtos.AlbumDTO;
+import interfaces.IAlbumService;
+import interfaces.IUsuarioService;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -31,7 +31,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import services.AlbumService;
 import services.UsuarioService;
@@ -42,7 +41,8 @@ import ui.manager.SessionManager;
  * @author martinez
  */
 public class pnlCanciones extends javax.swing.JPanel {
-    private AlbumService as;
+    private IAlbumService as;
+    private IUsuarioService us;
     private List<AlbumDTO> albumesDTO = new ArrayList<>();
     /**
      * Creates new form pnlArtistas
@@ -170,7 +170,7 @@ public class pnlCanciones extends javax.swing.JPanel {
         // Agregar acciones a las opciones del menú
         itemFavoritos.addActionListener(e -> {
             System.out.println("Cancion " + cancion + " agregado a favoritos.");
-            UsuarioService us = new UsuarioService();
+            us = new UsuarioService();
             us.agregarCancionAFavoritos(SessionManager.getUsuarioActual().getId(), cancion, album.getId());
         });
         itemNoDeseados.addActionListener(e -> {
@@ -212,7 +212,7 @@ public class pnlCanciones extends javax.swing.JPanel {
         jScrollPane1.setViewportView(panelAlbumes);
 
         lblAlbumes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAlbumes.setText("Albumes");
+        lblAlbumes.setText("Canciones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

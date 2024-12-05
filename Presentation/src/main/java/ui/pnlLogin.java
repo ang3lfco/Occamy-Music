@@ -5,6 +5,7 @@
 package ui;
 
 import dtos.UsuarioDTO;
+import interfaces.IUsuarioService;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
@@ -20,7 +21,7 @@ import ui.manager.SessionManager;
  * @author martinez
  */
 public class pnlLogin extends javax.swing.JPanel {
-    private UsuarioService usuarioService;
+    private IUsuarioService usuarioService;
     private CustomRoundedTextField emailField;
     private CustomRoundedPasswordField passField;
     /**
@@ -65,6 +66,7 @@ public class pnlLogin extends javax.swing.JPanel {
             if(usuarioDTO != null){
                 SessionManager.setUsuarioActual(usuarioDTO);
                 JOptionPane.showMessageDialog(this, "Bienvenido, ahora puedes navegar.", "Acceso verificado", JOptionPane.ERROR_MESSAGE);
+                
             }
             else{
                 JOptionPane.showMessageDialog(this, "Advertencia, ingresa correctamente.", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
