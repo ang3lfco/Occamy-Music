@@ -7,6 +7,8 @@ package services;
 import daos.ArtistaDAO;
 import dtos.ArtistaDTO;
 import dtos.IntegranteDTO;
+import interfaces.IArtistaDAO;
+import interfaces.IArtistaService;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,23 +19,26 @@ import models.Integrante;
  *
  * @author martinez
  */
-public class ArtistaService {
-    private final ArtistaDAO artistaDAO;
+public class ArtistaService implements IArtistaService{
+    private IArtistaDAO artistaDAO;
     
     public ArtistaService() {
         this.artistaDAO = new ArtistaDAO();
     }
     
+    @Override
     public void agregarArtista(String nombre, String tipo, String imagenPath, String genero, List<IntegranteDTO> integrantesDTO){
         List<Integrante> integrantes = dtoToEntidad(integrantesDTO);
         Artista artista = new Artista(nombre, tipo, imagenPath, genero, integrantes);
         artistaDAO.insertar(artista);
     }
     
+    @Override
     public void autoInsertarDatos() throws ParseException{
         artistaDAO.insercionMasiva();
     }
     
+    @Override
     public List<Integrante> dtoToEntidad(List<IntegranteDTO> integranteDTO){
         List<Integrante> integrantes = new ArrayList<>();
         for (IntegranteDTO dto : integranteDTO) {
@@ -43,6 +48,7 @@ public class ArtistaService {
         return integrantes;
     }
     
+    @Override
     public List<IntegranteDTO> entidadToDTO(List<Integrante> integrantes){
         List<IntegranteDTO> integrantesDTO = new ArrayList<>();
         for(Integrante integrante : integrantes){
@@ -52,6 +58,7 @@ public class ArtistaService {
         return integrantesDTO;
     }
     
+    @Override
     public List<ArtistaDTO> obtenerArtistas(){
         List<Artista> artistas = artistaDAO.getArtistas();
         List<ArtistaDTO> artistasDTO = new ArrayList<>();

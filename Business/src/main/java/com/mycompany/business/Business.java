@@ -5,12 +5,14 @@
 package com.mycompany.business;
 
 import daos.ArtistaDAO;
+import daos.UsuarioDAO;
 import dtos.ArtistaDTO;
 import dtos.IntegranteDTO;
 import dtos.UsuarioDTO;
 import java.util.List;
 import models.Artista;
 import models.Integrante;
+import org.bson.types.ObjectId;
 import services.ArtistaService;
 import services.UsuarioService;
 
@@ -24,8 +26,23 @@ public class Business {
         System.out.println("Hello World!");
         // Crear instancia del DAO de Artista
         UsuarioService us = new UsuarioService();
-        UsuarioDTO usuarioDTO = new UsuarioDTO("angel", "ang3l@example.com", "456", "");
-        us.agregarUsuario(usuarioDTO);
+        
+        // ID de usuario de prueba (reemplaza con un ObjectId válido de tu base de datos)
+        ObjectId usuarioId = new ObjectId("675010208d4c7a5729d1cf0a"); // Reemplaza con un valor válido
+
+        // Llamada al método getFavoritos para artistas
+        List<?> artistasFavoritos = us.getFavoritos(usuarioId.toHexString(), "artistas");
+        System.out.println("Artistas favoritos: " + artistasFavoritos);
+
+        // Llamada al método getFavoritos para álbumes
+        List<?> albumesFavoritos = us.getFavoritos(usuarioId.toHexString(), "albumes");
+        System.out.println("albumes favoritos: " + albumesFavoritos);
+
+        // Llamada al método getFavoritos para canciones
+        List<String> cancionesFavoritas = (List<String>) us.getFavoritos(usuarioId.toHexString(), "canciones");
+        System.out.println("Canciones favoritas: " + cancionesFavoritas);
+//        UsuarioDTO usuarioDTO = new UsuarioDTO("angel", "ang3l@example.com", "456", "");
+//        us.agregarUsuario(usuarioDTO);
 //
 //        // Llamar al método getArtistas y obtener la lista de artistas
 //        List<ArtistaDTO> artistasDTO = as.obtenerArtistas();

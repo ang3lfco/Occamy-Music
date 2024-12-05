@@ -6,34 +6,37 @@ package services;
 
 import daos.AlbumDAO;
 import dtos.AlbumDTO;
-import dtos.ArtistaDTO;
+import interfaces.IAlbumDAO;
+import interfaces.IAlbumService;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import models.Album;
-import models.Artista;
 
 /**
  *
  * @author martinez
  */
-public class AlbumService {
-    private final AlbumDAO albumDAO;
+public class AlbumService implements IAlbumService{
+    private IAlbumDAO albumDAO;
     
     public AlbumService(){
         this.albumDAO = new AlbumDAO();
     }
     
+    @Override
     public void agregarAlbum(String nombre, Date fechaLanzamiento, String genero, String portadaPath, List<String> canciones, String artista){
         Album album = new Album(nombre, fechaLanzamiento, genero, portadaPath, canciones, artista);
         albumDAO.insertar(album);
     }
     
+    @Override
     public void autoInsertarDatos() throws ParseException{
         albumDAO.insercionMasiva();
     }
     
+    @Override
     public List<AlbumDTO> obtenerAlbumes(){
         List<Album> albumes = albumDAO.getAlbumes();
         List<AlbumDTO> albumesDTO = new ArrayList<>();
