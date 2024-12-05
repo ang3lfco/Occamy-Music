@@ -13,6 +13,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import connection.MongoConnection;
+import interfaces.IUsuarioDAO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ import org.bson.types.ObjectId;
  *
  * @author martinez
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO{
     private MongoClient mongoClient;
     private CodecRegistry pojoCodecRegistry;
     
@@ -50,20 +51,38 @@ public class UsuarioDAO {
         );
     }
     
-    public boolean insertar(Usuario usuario){
-        try{
+    @Override
+    public boolean insertar(Usuario usuario) {
+        try {
             MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
-            MongoCollection<Usuario> collection = database.getCollection("usuarios", Usuario.class);
-            collection.insertOne(usuario);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document favoritos = new Document()
+                    .append("artistas", new ArrayList<>())
+                    .append("albumes", new ArrayList<>())
+                    .append("canciones", new ArrayList<>());
+
+            Document bloqueados = new Document()
+                    .append("generos", new ArrayList<>());
+
+            Document document = new Document()
+                    .append("nombre", usuario.getNombre())
+                    .append("correo", usuario.getCorreo())
+                    .append("pass", usuario.getPass())
+                    .append("imagenPath", usuario.getImagenPath())
+                    .append("favoritos", favoritos) 
+                    .append("bloqueados", bloqueados); 
+
+            collection.insertOne(document);
             mongoClient.close();
             return true;
-        }
-        catch(MongoException e){
+        } catch (MongoException e) {
             System.out.println("Error en Mongo al intentar insertar Usuario: " + e.getMessage());
             return false;
         }
     }
     
+    @Override
     public Usuario login(String correo){
         try{
             MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
@@ -78,6 +97,7 @@ public class UsuarioDAO {
         }
     }
     
+    @Override
     public List<?> getFavoritos(String usuarioIdStr, String tipo){
         ObjectId usuarioId = new ObjectId(usuarioIdStr);
         
@@ -115,8 +135,9 @@ public class UsuarioDAO {
         }
         return Collections.emptyList();
     }
-
-    private List<Map<String, Object>> getCancionesFavoritas(ObjectId usuarioId, MongoCollection<Album> albumsCollection){
+    
+    @Override
+    public List<Map<String, Object>> getCancionesFavoritas(ObjectId usuarioId, MongoCollection<Album> albumsCollection){
         MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
         MongoCollection<Document> usuariosCollection = database.getCollection("usuarios");
 
@@ -149,6 +170,31 @@ public class UsuarioDAO {
         return Collections.emptyList();
     }
     
+    @Override
+    public boolean agregarCancionAFavoritos(String usuarioIdStr, String tituloCancion, String albumIdStr) {
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        ObjectId albumId = new ObjectId(albumIdStr);
+
+        try{
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document cancion = new Document("titulo", tituloCancion)
+                                    .append("album", albumId);
+
+            Document filtro = new Document("_id", usuarioId);
+            Document actualizacion = new Document("$addToSet", new Document("favoritos.canciones", cancion));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        } 
+        catch(MongoException e){
+            System.out.println("Error al agregar cancion a favoritos: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    @Override
     public boolean agregarAFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
         ObjectId usuarioId = new ObjectId(usuarioIdStr);
         ObjectId favoritoId = new ObjectId(favoritoIdStr);
@@ -172,36 +218,15 @@ public class UsuarioDAO {
         }
     }
     
-    public boolean agregarCancionAFavoritos(String usuarioIdStr, String tituloCancion, String albumIdStr) {
-        ObjectId usuarioId = new ObjectId(usuarioIdStr);
-        ObjectId albumId = new ObjectId(albumIdStr);
-
-        try {
-            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
-            MongoCollection<Document> collection = database.getCollection("usuarios");
-
-            Document cancion = new Document("titulo", tituloCancion)
-                                    .append("album", albumId);
-
-            Document filtro = new Document("_id", usuarioId);
-            Document actualizacion = new Document("$addToSet", new Document("favoritos.canciones", cancion));
-
-            collection.updateOne(filtro, actualizacion);
-            return true;
-        } catch (MongoException e) {
-            System.out.println("Error al agregar cancion a favoritos: " + e.getMessage());
-            return false;
-        }
-    }
-    
+    @Override
     public boolean eliminarDeFavoritos(String usuarioIdStr, String tipo, String favoritoIdStr){
         ObjectId usuarioId = new ObjectId(usuarioIdStr);
         ObjectId favoritoId = new ObjectId(favoritoIdStr);
-        try {
+        try{
             MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
             MongoCollection<Document> collection = database.getCollection("usuarios");
 
-            if (!List.of("artistas", "albumes", "canciones").contains(tipo)) {
+            if (!List.of("artistas", "albumes").contains(tipo)) {
                 throw new IllegalArgumentException("Tipo de favorito no válido: " + tipo);
             }
 
@@ -217,7 +242,28 @@ public class UsuarioDAO {
         }
     }
     
-    public boolean agregarBloqueo(String usuarioIdStr, String genero) {
+    @Override
+    public boolean eliminarCancionDeFavoritos(String usuarioIdStr, String titulo, String albumIdStr){
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        ObjectId albumId = new ObjectId(albumIdStr);
+        try{
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document filtro = new Document("_id", usuarioId);
+            Document actualizacion = new Document("$pull", new Document("favoritos.canciones", new Document("titulo", titulo).append("album", albumId)));
+
+            collection.updateOne(filtro, actualizacion);
+            return true;
+        } 
+        catch(MongoException e){
+            System.out.println("Error al eliminar la cancion de favoritos: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean agregarBloqueo(String usuarioIdStr, String genero){
         ObjectId usuarioId = new ObjectId(usuarioIdStr);
 
         try {
@@ -232,6 +278,41 @@ public class UsuarioDAO {
             return true;
         } catch (MongoException e) {
             System.out.println("Error al agregar bloqueo: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    @Override
+    public List<String> getGenerosNoDeseados(String usuarioIdStr){
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+        MongoCollection<Document> usuariosCollection = database.getCollection("usuarios");
+
+        Document filtro = new Document("_id", usuarioId);
+        Document resultado = usuariosCollection.find(filtro).first();
+
+        Document bloqueados = (Document) resultado.get("bloqueados");
+        List<String> generosNoDeseados = (List<String>) bloqueados.get("generos");
+  
+        return generosNoDeseados;
+    }
+    
+    public boolean eliminarBloqueo(String usuarioIdStr, String genero) {
+        ObjectId usuarioId = new ObjectId(usuarioIdStr);
+        try{
+            MongoDatabase database = mongoClient.getDatabase("bibliotecaMusical7").withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<Document> collection = database.getCollection("usuarios");
+
+            Document filtro = new Document("_id", usuarioId);
+
+            Document actualizacion = new Document("$pull", new Document("bloqueados.generos", genero));
+
+            collection.updateOne(filtro, actualizacion);
+
+            return true;
+        } 
+        catch(MongoException e){
+            System.out.println("Error al eliminar bloqueo: " + e.getMessage());
             return false;
         }
     }
